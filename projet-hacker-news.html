@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hacker News EDA - Inès Amdjahed</title>
+<title>Hacker News EDA — Inès Amdjahed</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -83,11 +83,11 @@ p strong{color:var(--ink);font-weight:500}
 
   <!-- ✏️ MODIFIE À PARTIR D'ICI -->
   <div class="proj-tag">EDA · Analyse de plateforme</div>
-  <h1>Hacker News —<br><em>Exploration des données</em></h1>
+  <h1>Hacker News —<br><em>Exploration de données</em></h1>
   <p class="proj-sub">
-    Analyse exploratoire de plus de 300 000 posts Hacker News :
-    patterns temporels de publication, corrélations entre votes et commentaires,
-    identification des catégories les plus engageantes.
+    Analyse exploratoire d'un dataset Hacker News :
+    distribution des scores, patterns de publication, types de contenus
+    et comportements d'engagement de la communauté tech.
   </p>
   <div class="chips">
     <span class="chip chip-a">Python</span>
@@ -102,8 +102,8 @@ p strong{color:var(--ink);font-weight:500}
 
   <div class="kpi-row">
     <div class="kpi"><div class="kv">300k+</div><div class="kl">Posts<br>analysés</div></div>
-    <div class="kpi"><div class="kv">r=.62</div><div class="kl">Votes ↔<br>commentaires</div></div>
-    <div class="kpi"><div class="kv">24h</div><div class="kl">Cycle de vie<br>d'un post</div></div>
+    <div class="kpi"><div class="kv">EDA</div><div class="kl">Exploration<br>complète</div></div>
+    <div class="kpi"><div class="kv">2023</div><div class="kl">Année<br>du dataset</div></div>
   </div>
 
   <div class="divider"></div>
@@ -111,31 +111,34 @@ p strong{color:var(--ink);font-weight:500}
   <h2>Contexte &amp; <em>objectif</em></h2>
   <p>
     Hacker News est l'une des plateformes tech les plus influentes du monde.
-    Ce projet vise à comprendre <strong>quels posts performent et pourquoi</strong> :
-    y a-t-il des patterns temporels ? Les posts "Ask HN" engagent-ils plus que les liens ?
-    Quelle est la corrélation entre le nombre de votes et de commentaires ?
+    Ce projet explore la structure du dataset : distribution des scores,
+    types de posts (Ask HN, Show HN, liens), et patterns généraux d'engagement.
+  </p>
+  <p>
+    Ce projet a servi d'<strong>exercice de prise en main</strong> des outils EDA
+    (Pandas, Seaborn) avant d'aborder des analyses plus complexes sur des données médias.
   </p>
 
   <div class="divider"></div>
 
-  <h2>Résultats <em>clés</em></h2>
+  <h2>Ce que le notebook <em>explore</em></h2>
   <div class="result-list">
-    <div class="result-item">Les posts publiés entre 9h et 12h (heure EST) obtiennent en moyenne 40% de votes supplémentaires - la communauté HN est concentrée aux US.</div>
-    <div class="result-item">Corrélation modérée entre votes et commentaires (r = 0.62) - un post très voté ne génère pas forcément de débat.</div>
-    <div class="result-item">Les posts "Ask HN" ont un ratio commentaires/votes 3x supérieur aux liens externes, malgré moins de votes absolus.</div>
-    <div class="result-item">90% de l'engagement se concentre dans les 6 premières heures - le cycle de vie d'un post HN est très court.</div>
+    <div class="result-item">Distribution des scores : forte asymétrie, la majorité des posts obtiennent peu de points tandis qu'une minorité concentre l'attention.</div>
+    <div class="result-item">Comparaison des types de posts : Ask HN, Show HN, et liens externes ont des comportements d'engagement différents.</div>
+    <div class="result-item">Analyse de la distribution temporelle des publications selon les heures et les jours de la semaine.</div>
+    <div class="result-item">Nettoyage des données et traitement des valeurs manquantes dans les champs textuels.</div>
   </div>
 
   <div class="divider"></div>
 
   <h2>Méthode <em>technique</em></h2>
-  <p><strong>Données :</strong> Dataset Hacker News via BigQuery (Google Cloud), exporté en CSV.</p>
-  <p><strong>Analyse :</strong> Nettoyage Pandas, agrégations temporelles, corrélations, visualisations Seaborn avec palette personnalisée.</p>
+  <p><strong>Données :</strong> Dataset Hacker News public (Kaggle / archive HN).</p>
+  <p><strong>Analyse :</strong> Nettoyage Pandas, statistiques descriptives, visualisations Seaborn et Matplotlib.</p>
 
   <div class="proj-nav">
     <a href="projet-social-media.html" class="pnav-link">
       <div class="pnav-dir">← Projet précédent</div>
-      <div class="pnav-title">Social media vs Traditional media</div>
+      <div class="pnav-title">Social Media vs Traditional Media</div>
     </a>
     <a href="projet-memoire.html" class="pnav-link" style="text-align:right">
       <div class="pnav-dir">Projet suivant →</div>
