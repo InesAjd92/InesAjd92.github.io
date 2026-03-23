@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ✏️ Modifie le titre de l'onglet -->
+<title>Social Media vs Traditional Media — Inès Amdjahed</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Les variables et styles de base sont identiques à index.html */
+:root {
+  --bg:#080B0F; --s1:#0D1117; --s2:#131920; --s3:#1A2230;
+  --border:#1E2A38; --border2:#28394A;
+  --cyan:#00D4FF; --cyan-d:rgba(0,212,255,.08); --cyan-m:rgba(0,212,255,.35);
+  --teal:#00B8A0; --teal-d:rgba(0,184,160,.1);
+  --amber:#F5A623; --amber-d:rgba(245,166,35,.1);
+  --blue:#5B9CF6; --blue-d:rgba(91,156,246,.1);
+  --ink:#E4EDF5; --mid:#7A8FA0; --muted:#435060;
+  --mono:'JetBrains Mono',monospace;
+  --serif:'Playfair Display',serif;
+  --sans:'DM Sans',sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.65;overflow-x:hidden}
+::selection{background:var(--cyan-d);color:var(--cyan)}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.025) 1px,transparent 1px);background-size:52px 52px;pointer-events:none;z-index:0}
+
+/* NAV — identique à index.html */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:58px;padding:0 56px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,11,15,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--ink);text-decoration:none}
+.nav-logo span{color:var(--cyan);font-style:normal}
+.nav-ul{display:flex;gap:2px;list-style:none}
+.nav-ul a{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:7px 14px;border-radius:5px;transition:all .15s}
+.nav-ul a:hover{color:var(--cyan);background:var(--cyan-d)}
+.nav-back{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);background:var(--cyan-d);border:1px solid rgba(0,212,255,.22);padding:8px 18px;border-radius:6px;text-decoration:none;transition:all .15s}
+.nav-back:hover{background:rgba(0,212,255,.14)}
+
+/* LAYOUT PAGE PROJET */
+.wrap{max-width:960px;margin:0 auto;padding:100px 48px 80px;position:relative;z-index:1}
+
+/* Fil d'Ariane */
+.breadcrumb{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:36px}
+.breadcrumb a{color:var(--muted);text-decoration:none;transition:color .15s}
+.breadcrumb a:hover{color:var(--cyan)}
+.breadcrumb span{color:var(--cyan);margin:0 8px}
+
+/* Header du projet */
+.proj-header{margin-bottom:56px}
+.proj-tag{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);background:var(--cyan-d);border:1px solid rgba(0,212,255,.18);padding:5px 12px;border-radius:4px;display:inline-block;margin-bottom:20px}
+h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:400;line-height:1.1;letter-spacing:-.025em;margin-bottom:20px;color:var(--ink)}
+h1 em{font-style:italic;color:var(--cyan)}
+.proj-sub{font-size:16px;color:var(--mid);line-height:1.8;max-width:680px;margin-bottom:32px}
+
+/* Chips */
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:36px}
+.chip{font-family:var(--mono);font-size:10px;letter-spacing:.05em;padding:4px 10px;border-radius:4px;background:var(--s2);color:var(--muted);border:1px solid var(--border)}
+.chip-a{background:var(--cyan-d);color:var(--cyan);border-color:rgba(0,212,255,.2)}
+
+/* Bouton GitHub */
+.gh-btn{display:inline-flex;align-items:center;gap:8px;background:var(--cyan);color:#060809;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:13px 26px;border-radius:7px;text-decoration:none;transition:all .2s var(--ease)}
+.gh-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,212,255,.35)}
+
+/* Séparateur */
+.divider{height:1px;background:var(--border);margin:48px 0}
+
+/* KPIs */
+.kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:48px}
+.kpi{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:22px 20px;transition:border-color .2s}
+.kpi:hover{border-color:rgba(0,212,255,.28)}
+.kv{font-family:var(--serif);font-style:italic;font-size:2.2rem;color:var(--cyan);line-height:1;margin-bottom:6px}
+.kl{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);line-height:1.5}
+
+/* Sections de contenu */
+h2{font-family:var(--serif);font-size:1.6rem;font-weight:400;color:var(--ink);margin-bottom:16px;padding-top:8px}
+h2 em{font-style:italic;color:var(--cyan)}
+p{font-size:14px;color:var(--mid);line-height:1.85;margin-bottom:16px}
+p strong{color:var(--ink);font-weight:500}
+
+/* Bloc hypothèse */
+.hypo-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:24px}
+.hypo{background:var(--s1);border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:0 8px 8px 0;padding:18px 22px}
+.hypo-label{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);margin-bottom:6px}
+.hypo-text{font-size:13.5px;color:var(--mid);line-height:1.75}
+.hypo-result{font-family:var(--mono);font-size:10px;color:var(--teal);margin-top:8px;letter-spacing:.08em}
+
+/* Résultats liste */
+.result-list{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.result-item{display:flex;align-items:flex-start;gap:14px;font-size:13.5px;color:var(--mid);line-height:1.7}
+.result-item::before{content:'→';color:var(--cyan);font-family:var(--mono);flex-shrink:0;margin-top:2px}
+
+/* Navigation entre projets */
+.proj-nav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:64px;padding-top:40px;border-top:1px solid var(--border)}
+.pnav-link{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:20px 24px;text-decoration:none;color:inherit;transition:all .2s}
+.pnav-link:hover{border-color:rgba(0,212,255,.28);background:var(--cyan-d)}
+.pnav-dir{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.pnav-title{font-family:var(--serif);font-size:1rem;color:var(--ink)}
+
+@media(max-width:768px){
+  nav{padding:0 24px}.nav-ul{display:none}
+  .wrap{padding:100px 24px 60px}
+  .kpi-row{grid-template-columns:1fr 1fr}
+  .proj-nav{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><em>Inès Amdjahed</em><span> ·</span></a>
+  <ul class="nav-ul">
+    <li><a href="index.html#projets">Projets</a></li>
+    <li><a href="index.html#competences">Stack</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="index.html" class="nav-back">← Retour</a>
+</nav>
+
+<div class="wrap">
+
+  <!-- Fil d'Ariane -->
+  <div class="breadcrumb">
+    <a href="index.html">Accueil</a>
+    <span>/</span>
+    Projets
+    <span>/</span>
+    Social Media vs Traditional Media
+  </div>
+
+  <!-- Header -->
+  <div class="proj-header">
+    <!-- ✏️ Tag / catégorie du projet -->
+    <div class="proj-tag">Analyse longitudinale · EDA · Médias</div>
+
+    <!-- ✏️ Titre -->
+    <h1>Social Media vs<br><em>Traditional Media</em></h1>
+
+    <!-- ✏️ Sous-titre / description courte (1-2 phrases) -->
+    <p class="proj-sub">
+      Dans quelle mesure la montée en puissance des réseaux sociaux est-elle
+      associée au déclin de la TV linéaire chez les jeunes adultes ?
+      Une analyse longitudinale 2013–2023, données CNC, GWI et plateformes MAU.
+    </p>
+
+    <!-- ✏️ Technologies — ajoute/supprime des chips -->
+    <div class="chips">
+      <span class="chip chip-a">Python</span>
+      <span class="chip chip-a">Pandas</span>
+      <span class="chip chip-a">Scipy</span>
+      <span class="chip">Matplotlib</span>
+      <span class="chip">Seaborn</span>
+      <span class="chip">CNC / Médiamétrie</span>
+      <span class="chip">GWI</span>
+      <span class="chip">Jupyter</span>
+    </div>
+
+    <!-- ✏️ Lien GitHub — remplace l'URL -->
+    <a href="https://github.com/InesAjd92/social-media-vs-traditional-media" target="_blank" class="gh-btn">
+      ↗ Voir le code sur GitHub
+    </a>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- KPIs principaux -->
+  <!-- ✏️ Modifie les valeurs et labels -->
+  <div class="kpi-row">
+    <div class="kpi"><div class="kv">−52%</div><div class="kl">TV 15-34 ans<br>2013 → 2023</div></div>
+    <div class="kpi"><div class="kv">r = .78</div><div class="kl">Corrélation Pearson<br>p &lt; 0.01</div></div>
+    <div class="kpi"><div class="kv">4h/jour</div><div class="kl">Fossé générationnel<br>50+ vs 15-34 en 2023</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ✏️ CONTEXTE — explique pourquoi tu as fait ce projet -->
+  <h2>Contexte &amp; <em>problématique</em></h2>
+  <p>
+    La consommation médias se fragmente à grande vitesse. Depuis dix ans, les jeunes adultes
+    délaissent la télévision linéaire au profit des plateformes numériques et des réseaux sociaux.
+    Mais dans quelle mesure ces deux tendances sont-elles liées ?
+  </p>
+  <p>
+    <strong>Problématique :</strong> Dans quelle mesure la montée en puissance des réseaux sociaux
+    numériques est-elle associée au déclin structurel de la consommation TV linéaire
+    chez les jeunes adultes (15-34 ans) en France, sur la période 2013–2023 ?
+  </p>
+
+  <div class="divider"></div>
+
+  <!-- ✏️ HYPOTHÈSES — présente tes H1/H2/H3 -->
+  <h2>Hypothèses <em>testées</em></h2>
+  <div class="hypo-grid">
+    <div class="hypo">
+      <div class="hypo-label">H1 — Corrélation principale</div>
+      <div class="hypo-text">La progression du temps passé sur les réseaux sociaux est corrélée négativement avec la durée d'écoute TV chez les 15-34 ans.</div>
+      <div class="hypo-result">✅ Confirmée — r = −0.78, p &lt; 0.01</div>
+    </div>
+    <div class="hypo">
+      <div class="hypo-label">H2 — Rôle médiateur des plateformes</div>
+      <div class="hypo-text">Le streaming joue un rôle médiateur : TikTok explose exactement au moment où la chute TV est la plus prononcée (2018-2021).</div>
+      <div class="hypo-result">✅ Confirmée — TikTok +1.7B MAU en 3 ans</div>
+    </div>
+    <div class="hypo">
+      <div class="hypo-label">H3 — Fracture générationnelle</div>
+      <div class="hypo-text">Le fossé entre 50 ans+ et 15-34 ans se creuse chaque année de façon statistiquement significative.</div>
+      <div class="hypo-result">✅ Confirmée — 147 → 242 min/jour (+65%), p &lt; 0.001</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ✏️ RÉSULTATS CLÉS -->
+  <h2>Résultats <em>clés</em></h2>
+  <div class="result-list">
+    <div class="result-item">Les 15-34 ans regardent 52% moins la TV en 2023 qu'en 2013 (155 → 74 min/jour), contre seulement 40% pour la tranche 15-49 ans — montrant l'effet de dilution de l'agrégation large.</div>
+    <div class="result-item">La corrélation de Pearson entre temps réseaux sociaux et durée TV 15-34 ans est de r = −0.78 (p &lt; 0.01), plus forte qu'avec la tranche 15-49 (r = −0.67).</div>
+    <div class="result-item">L'écart générationnel (50ans+ vs 15-34ans) est passé de 147 à 242 min/jour (+65%) — soit 4 heures de différence quotidienne en 2023.</div>
+    <div class="result-item">2024 : rupture méthodologique Médiamétrie (nouvelle mesure tous foyers/tous écrans) — les données ne sont pas comparables à la série historique.</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ✏️ PIPELINE / MÉTHODE — décris ce que tu as fait techniquement -->
+  <h2>Pipeline <em>technique</em></h2>
+  <p>
+    <strong>Collecte :</strong> Scripts Python de scraping (Our World in Data, GWI via DataReportal),
+    consolidation manuelle des données CNC/Médiamétrie depuis les fichiers Excel officiels
+    et rapports annuels.
+  </p>
+  <p>
+    <strong>Nettoyage :</strong> Traitement des ruptures méthodologiques Médiamétrie (6 ruptures
+    entre 2011 et 2024), annotation des NaN documentés, construction de séries comparables,
+    indices base 100.
+  </p>
+  <p>
+    <strong>EDA :</strong> Corrélation de Pearson, régression OLS, analyse de tendances,
+    comparaison internationale, visualisations Matplotlib/Seaborn avec style sombre personnalisé.
+  </p>
+
+  <!-- Navigation entre projets -->
+  <div class="proj-nav">
+    <a href="index.html#projets" class="pnav-link">
+      <div class="pnav-dir">← Tous les projets</div>
+      <div class="pnav-title">Retour à l'accueil</div>
+    </a>
+    <a href="projet-hacker-news.html" class="pnav-link" style="text-align:right">
+      <div class="pnav-dir">Projet suivant →</div>
+      <div class="pnav-title">Hacker News — EDA</div>
+    </a>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inès Amdjahed — Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   COMMENT MODIFIER CE FICHIER — GUIDE RAPIDE
+   ============================================================
+
+   1. TEXTE : cherche la section avec les commentaires
+      <!-- ✏️ MODIFIE ICI --> et change le texte entre les balises.
+
+   2. COULEURS : change les variables en haut du fichier CSS
+      (section :root). Ex : --cyan:#00D4FF → --cyan:#FF6B6B
+
+   3. TA PHOTO : remplace "photo.jpg" par le nom de ton fichier image.
+      Place l'image dans le même dossier que index.html.
+
+   4. LIENS : cherche href="..." et remplace par tes vraies URLs.
+
+   5. AJOUTER UN PROJET : duplique un bloc <a class="pcard">
+      et modifie le texte à l'intérieur.
+   ============================================================ */
+
+:root {
+  /* — Couleurs principales — */
+  --bg:     #080B0F;   /* fond général (très sombre) */
+  --s1:     #0D1117;   /* surface des cartes */
+  --s2:     #131920;   /* surface secondaire */
+  --s3:     #1A2230;   /* surface tertiaire */
+  --border: #1E2A38;   /* bordures */
+  --border2:#28394A;   /* bordures au survol */
+
+  /* — Couleurs d'accent — */
+  --cyan:   #00D4FF;              /* couleur principale */
+  --cyan-d: rgba(0,212,255,.08);  /* fond cyan transparent */
+  --cyan-m: rgba(0,212,255,.35);  /* cyan moyen */
+  --teal:   #00B8A0;              /* vert-bleu (médias) */
+  --teal-d: rgba(0,184,160,.1);
+  --amber:  #F5A623;              /* orange (ARCOM etc.) */
+  --amber-d:rgba(245,166,35,.1);
+  --blue:   #5B9CF6;              /* bleu (R / NLP) */
+  --blue-d: rgba(91,156,246,.1);
+
+  /* — Texte — */
+  --ink:    #E4EDF5;   /* texte principal */
+  --mid:    #7A8FA0;   /* texte secondaire */
+  --muted:  #435060;   /* texte discret */
+
+  /* — Typographies — */
+  --mono:  'JetBrains Mono', monospace;  /* chiffres, tags, labels */
+  --serif: 'Playfair Display', serif;    /* titres */
+  --sans:  'DM Sans', sans-serif;        /* corps de texte */
+
+  --ease: cubic-bezier(.16,1,.3,1);
+}
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0 }
+html { scroll-behavior:smooth }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar { width:3px }
+::-webkit-scrollbar-track { background:var(--bg) }
+::-webkit-scrollbar-thumb { background:var(--border2); border-radius:2px }
+::selection { background:var(--cyan-d); color:var(--cyan) }
+
+/* Grille de fond subtile */
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background-image:
+    linear-gradient(rgba(0,212,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,.025) 1px, transparent 1px);
+  background-size: 52px 52px;
+  pointer-events:none; z-index:0;
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  height:58px; padding:0 56px;
+  display:flex; align-items:center; justify-content:space-between;
+  background:rgba(8,11,15,.9);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+
+/* ✏️ Le logo/nom dans la nav */
+.nav-logo {
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:1rem; color:var(--ink);
+  text-decoration:none;
+}
+.nav-logo span { color:var(--cyan); font-style:normal }
+
+.nav-ul { display:flex; gap:2px; list-style:none }
+.nav-ul a {
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); text-decoration:none;
+  padding:7px 14px; border-radius:5px; transition:all .15s;
+}
+.nav-ul a:hover { color:var(--cyan); background:var(--cyan-d) }
+
+.nav-cta {
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:var(--cyan); background:var(--cyan-d);
+  border:1px solid rgba(0,212,255,.22);
+  padding:8px 18px; border-radius:6px;
+  text-decoration:none; transition:all .15s;
+}
+.nav-cta:hover { background:rgba(0,212,255,.14); box-shadow:0 0 18px rgba(0,212,255,.14) }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  min-height:100vh;
+  display:grid;
+  grid-template-columns: 1fr 420px;
+  border-bottom:1px solid var(--border);
+  position:relative;
+}
+/* Lueur d'ambiance */
+.hero::after {
+  content:''; position:absolute;
+  top:25%; left:35%; width:600px; height:500px;
+  background:radial-gradient(circle, rgba(0,212,255,.04) 0%, transparent 70%);
+  pointer-events:none;
+}
+
+/* ─── Colonne gauche ─── */
+.hero-left {
+  padding:120px 72px 80px;
+  display:flex; flex-direction:column; justify-content:center;
+  border-right:1px solid var(--border);
+  position:relative; z-index:1;
+}
+/* Ligne décorative sur le bord */
+.hero-left::before {
+  content:''; position:absolute;
+  left:0; top:20%; bottom:20%; width:1px;
+  background:linear-gradient(to bottom, transparent, var(--cyan-m), transparent);
+}
+
+/* Badge "disponible" */
+.badge {
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--mono); font-size:10px;
+  letter-spacing:.16em; text-transform:uppercase;
+  color:var(--cyan); margin-bottom:40px;
+}
+.bdot {
+  width:6px; height:6px; border-radius:50%;
+  background:var(--teal); box-shadow:0 0 8px var(--teal);
+  animation:blink 2.5s infinite; flex-shrink:0;
+}
+@keyframes blink {
+  0%,100% { opacity:1; box-shadow:0 0 8px var(--teal) }
+  50%      { opacity:.4; box-shadow:0 0 2px var(--teal) }
+}
+
+/* Bloc nom + photo */
+.hero-name-row {
+  display:flex;
+  align-items:flex-end;
+  gap:28px;
+  margin-bottom:14px;
+}
+
+h1 {
+  font-family:var(--serif);
+  font-size:clamp(3.8rem,6vw,6.5rem);
+  font-weight:400; line-height:1.0;
+  letter-spacing:-.025em; color:var(--ink);
+}
+h1 em { font-style:italic; color:var(--cyan); text-shadow:0 0 40px rgba(0,212,255,.22) }
+
+/* ✏️ PHOTO — remplace "photo.jpg" par ton fichier image.
+   Place le fichier dans le même dossier que index.html.
+   La photo s'affiche en cercle 120x120px à côté du titre. */
+.hero-photo {
+  width:110px; height:110px;
+  border-radius:50%;
+  object-fit:cover;           /* recadre automatiquement */
+  object-position:center top; /* centre sur le visage */
+  border:2px solid var(--border2);
+  flex-shrink:0;
+  margin-bottom:8px;
+  transition:border-color .2s;
+}
+.hero-photo:hover { border-color:var(--cyan) }
+
+/* Si pas encore de photo, affiche un placeholder */
+.hero-photo-placeholder {
+  width:110px; height:110px;
+  border-radius:50%;
+  background:var(--s2);
+  border:2px dashed var(--border2);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; margin-bottom:8px;
+  font-family:var(--mono); font-size:9px;
+  letter-spacing:.1em; color:var(--muted); text-align:center;
+  line-height:1.4;
+}
+
+.hero-role {
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--muted); margin-bottom:32px;
+}
+
+/* ✏️ PHRASE D'INTRO — modifie le texte dans la balise <p class="hero-desc"> */
+.hero-desc {
+  font-size:15.5px; color:var(--mid);
+  max-width:500px; line-height:1.9;
+  margin-bottom:44px;
+}
+.hero-desc strong { color:var(--ink); font-weight:500 }
+.hero-desc em { font-style:italic; color:var(--cyan) }
+
+.actions { display:flex; gap:12px; margin-bottom:50px }
+
+.btn-p {
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--cyan); color:#060809;
+  font-family:var(--mono); font-size:11px;
+  font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  padding:13px 26px; border-radius:7px;
+  text-decoration:none; transition:all .2s var(--ease);
+}
+.btn-p:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,212,255,.35) }
+
+.btn-g {
+  display:inline-flex; align-items:center; gap:8px;
+  background:transparent; color:var(--mid);
+  font-family:var(--mono); font-size:11px;
+  letter-spacing:.1em; text-transform:uppercase;
+  padding:13px 26px; border-radius:7px;
+  border:1px solid var(--border2);
+  text-decoration:none; transition:all .2s;
+}
+.btn-g:hover { border-color:var(--cyan-m); color:var(--cyan) }
+
+/* Pills de compétences */
+.stack { display:flex; flex-wrap:wrap; gap:7px; padding-top:28px; border-top:1px solid var(--border) }
+.pill {
+  font-family:var(--mono); font-size:10px;
+  font-weight:500; letter-spacing:.06em;
+  padding:5px 11px; border-radius:4px;
+  transition:all .15s; cursor:default;
+}
+/* Variantes de couleur par catégorie */
+.p-d { background:var(--s2); color:var(--muted); border:1px solid var(--border) }
+.p-c { background:var(--cyan-d); color:var(--cyan); border:1px solid rgba(0,212,255,.2) }
+.p-t { background:var(--teal-d); color:var(--teal); border:1px solid rgba(0,184,160,.2) }
+.p-a { background:var(--amber-d); color:var(--amber); border:1px solid rgba(245,166,35,.2) }
+.p-b { background:var(--blue-d); color:var(--blue); border:1px solid rgba(91,156,246,.2) }
+
+/* ─── Colonne droite (dashboard) ─── */
+.hero-right {
+  padding:120px 44px 80px;
+  display:flex; flex-direction:column; justify-content:center;
+  gap:12px; position:relative; z-index:1;
+}
+.plbl {
+  font-family:var(--mono); font-size:9px;
+  letter-spacing:.22em; text-transform:uppercase;
+  color:var(--muted); margin-bottom:2px;
+}
+
+/* KPIs */
+.kpi-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px }
+.kpi {
+  background:var(--s1); border:1px solid var(--border);
+  border-radius:10px; padding:19px 17px; transition:border-color .2s;
+}
+.kpi:hover { border-color:rgba(0,212,255,.28) }
+.kv { font-family:var(--serif); font-style:italic; font-size:1.85rem; color:var(--cyan); line-height:1; margin-bottom:5px }
+.kl { font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); line-height:1.5 }
+
+/* Sparkline (mini graphique) */
+.spark { background:var(--s1); border:1px solid var(--border); border-radius:10px; padding:17px 19px }
+.spark-h { display:flex; justify-content:space-between; align-items:center; margin-bottom:13px }
+.spark-t { font-family:var(--mono); font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--mid) }
+.spark-b { font-family:var(--mono); font-size:9px; color:var(--teal); background:var(--teal-d); padding:3px 8px; border-radius:3px }
+.bars { display:flex; align-items:flex-end; gap:4px; height:48px }
+.bar { flex:1; border-radius:2px 2px 0 0; transition:opacity .15s; position:relative }
+.bar:hover { opacity:.75 }
+.bar:hover::after {
+  content:attr(data-v);
+  position:absolute; bottom:110%; left:50%; transform:translateX(-50%);
+  font-family:var(--mono); font-size:8px; color:var(--cyan);
+  white-space:nowrap; background:var(--s2); padding:2px 5px; border-radius:2px; pointer-events:none;
+}
+.bar.c { background:var(--cyan); opacity:.65 } .bar.c:hover { opacity:1 }
+.bar.g { background:var(--s3) }
+.years { display:flex; gap:4px; margin-top:5px }
+.yr { flex:1; font-family:var(--mono); font-size:7.5px; color:var(--muted); text-align:center }
+
+/* Status disponibilité */
+.status {
+  background:var(--s1); border:1px solid rgba(0,184,160,.25);
+  border-radius:10px; padding:13px 17px;
+  display:flex; align-items:center; gap:12px;
+}
+.sdot {
+  width:6px; height:6px; border-radius:50%;
+  background:var(--teal); box-shadow:0 0 8px var(--teal);
+  animation:blink 2.5s infinite; flex-shrink:0;
+}
+.stxt { font-family:var(--mono); font-size:10px; letter-spacing:.06em; color:var(--mid); line-height:1.5 }
+.stxt strong { color:var(--teal) }
+
+/* ============================================================
+   SECTIONS — BASE
+   ============================================================ */
+.wrap { max-width:1260px; margin:0 auto; padding:92px 72px; position:relative; z-index:1 }
+
+.sec-h { display:flex; align-items:center; gap:18px; margin-bottom:56px }
+.sec-tag {
+  font-family:var(--mono); font-size:9px; font-weight:700;
+  letter-spacing:.22em; text-transform:uppercase;
+  color:var(--cyan); background:var(--cyan-d);
+  border:1px solid rgba(0,212,255,.18);
+  padding:5px 12px; border-radius:4px;
+}
+h2 { font-family:var(--serif); font-size:clamp(1.9rem,3vw,2.4rem); font-weight:400; letter-spacing:-.02em }
+h2 em { font-style:italic; color:var(--cyan) }
+.sec-line { flex:1; height:1px; background:linear-gradient(to right,var(--border),transparent) }
+
+/* ============================================================
+   PROJETS
+   ============================================================ */
+#projets { border-bottom:1px solid var(--border) }
+
+/* Carte projet principale (featured) */
+.pfeat {
+  display:grid; grid-template-columns:1fr 296px;
+  background:var(--s1); border:1px solid var(--border);
+  border-radius:14px; overflow:hidden;
+  text-decoration:none; color:inherit;
+  margin-bottom:12px;
+  transition:border-color .25s, box-shadow .25s, transform .25s var(--ease);
+}
+.pfeat:hover {
+  border-color:rgba(0,212,255,.38);
+  box-shadow:0 0 0 1px rgba(0,212,255,.14), 0 20px 60px rgba(0,0,0,.4);
+  transform:translateY(-2px);
+}
+.pfl { padding:42px 46px }
+.pf-ey {
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--mono); font-size:9px;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--cyan); margin-bottom:20px;
+}
+.pf-ey::before { content:''; width:18px; height:1px; background:var(--cyan) }
+.ptitle { font-family:var(--serif); font-size:1.7rem; font-weight:400; line-height:1.2; margin-bottom:14px }
+.pdesc { font-size:13.5px; color:var(--mid); line-height:1.8; max-width:440px; margin-bottom:26px }
+.chips { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:26px }
+.chip { font-family:var(--mono); font-size:10px; letter-spacing:.05em; padding:4px 10px; border-radius:4px; background:var(--s2); color:var(--muted); border:1px solid var(--border) }
+.chip-a { background:var(--cyan-d); color:var(--cyan); border-color:rgba(0,212,255,.2) }
+.pcta {
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--mono); font-size:10px; font-weight:700;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:var(--cyan); transition:gap .2s;
+}
+.pfeat:hover .pcta { gap:12px }
+
+/* Colonne droite de la carte featured */
+.pfr {
+  background:var(--s2); border-left:1px solid var(--border);
+  padding:42px 32px; display:flex; flex-direction:column; justify-content:center; gap:20px;
+}
+.mval { font-family:var(--serif); font-style:italic; font-size:2.4rem; color:var(--cyan); text-shadow:0 0 30px rgba(0,212,255,.18); line-height:1; margin-bottom:4px }
+.mlbl { font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); line-height:1.6 }
+.msep { height:1px; background:var(--border) }
+
+/* Grille des autres projets */
+.pgrid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px }
+.pcard {
+  background:var(--s1); border:1px solid var(--border);
+  border-radius:12px; padding:28px;
+  text-decoration:none; color:inherit;
+  display:flex; flex-direction:column; gap:10px;
+  transition:all .2s var(--ease);
+  position:relative; overflow:hidden;
+}
+/* Ligne de couleur qui apparaît au survol */
+.pcard::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg, var(--cyan), var(--teal));
+  transform:scaleX(0); transform-origin:left;
+  transition:transform .3s var(--ease);
+}
+.pcard:hover { border-color:var(--border2); transform:translateY(-3px); box-shadow:0 12px 40px rgba(0,0,0,.3) }
+.pcard:hover::before { transform:scaleX(1) }
+.pnum { font-family:var(--mono); font-size:9px; letter-spacing:.15em; color:var(--muted) }
+.pch { display:flex; justify-content:space-between; align-items:flex-start; gap:8px }
+.pctitle { font-family:var(--serif); font-size:1.08rem; font-weight:400; line-height:1.25; color:var(--ink) }
+.parr { color:var(--muted); font-size:.95rem; flex-shrink:0; transition:transform .2s,color .2s }
+.pcard:hover .parr { transform:translate(3px,-3px); color:var(--cyan) }
+.pcdesc { font-size:12.5px; color:var(--mid); line-height:1.7; flex:1 }
+
+/* ============================================================
+   COMPÉTENCES
+   ============================================================ */
+#competences { background:var(--s1); border-bottom:1px solid var(--border) }
+.sk-layout { display:grid; grid-template-columns:210px 1fr; gap:72px; align-items:start }
+.sk-intro { position:sticky; top:80px }
+.sk-intro p { font-size:13px; color:var(--mid); line-height:1.85; margin-top:14px }
+.sk-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px }
+.skc { background:var(--s2); border:1px solid var(--border); border-radius:10px; padding:24px; transition:border-color .2s }
+.skc:hover { border-color:var(--border2) }
+.skh { display:flex; align-items:center; gap:10px; padding-bottom:14px; margin-bottom:14px; border-bottom:1px solid var(--border) }
+.skdot { width:7px; height:7px; border-radius:50%; flex-shrink:0 }
+.skt { font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--mid) }
+.skp { display:flex; flex-wrap:wrap; gap:6px }
+
+/* ============================================================
+   PARCOURS
+   ============================================================ */
+#parcours { border-bottom:1px solid var(--border) }
+.tli { display:grid; grid-template-columns:170px 1fr; gap:44px; padding:34px 0; border-bottom:1px solid var(--border) }
+.tli:last-child { border-bottom:none }
+.tld { font-family:var(--mono); font-size:10px; letter-spacing:.08em; color:var(--muted); padding-top:3px; text-align:right }
+.tlr { font-family:var(--serif); font-size:1.12rem; font-weight:400; color:var(--ink); margin-bottom:4px }
+.tlo { font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--cyan); margin-bottom:10px }
+.tldesc { font-size:13px; color:var(--mid); line-height:1.8; max-width:540px }
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.ct-layout { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start }
+.ct-stmt { font-family:var(--serif); font-size:clamp(2rem,3.2vw,2.9rem); font-weight:400; line-height:1.2; letter-spacing:-.02em; color:var(--ink) }
+.ct-stmt em { font-style:italic; color:var(--cyan); text-shadow:0 0 28px rgba(0,212,255,.18) }
+.ct-stmt .dim { color:var(--muted) }
+.ct-sub { font-family:var(--mono); font-size:9px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-bottom:14px }
+.ct-links { display:flex; flex-direction:column; gap:2px }
+.cl { display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-radius:8px; border:1px solid var(--border); background:var(--s1); text-decoration:none; color:var(--mid); font-size:13px; transition:all .15s }
+.cl:hover { border-color:rgba(0,212,255,.28); color:var(--ink); background:var(--cyan-d) }
+.cl-l { display:flex; align-items:center; gap:14px }
+.cl-ico { font-family:var(--mono); font-size:12px; color:var(--cyan); width:26px; flex-shrink:0 }
+.cl-arr { color:var(--muted); transition:transform .15s,color .15s }
+.cl:hover .cl-arr { transform:translate(2px,-2px); color:var(--cyan) }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; position:relative; z-index:1 }
+.fl { font-family:var(--mono); font-size:10px; letter-spacing:.08em; color:var(--muted) }
+.fr { display:flex; gap:22px }
+.fr a { font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .15s }
+.fr a:hover { color:var(--cyan) }
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px) } to { opacity:1; transform:translateY(0) } }
+.au { opacity:0; animation:fadeUp .7s var(--ease) forwards }
+.d1{animation-delay:.05s} .d2{animation-delay:.18s} .d3{animation-delay:.3s}
+.d4{animation-delay:.42s} .d5{animation-delay:.55s}
+
+.reveal { opacity:0; transform:translateY(14px); transition:opacity .6s var(--ease),transform .6s var(--ease) }
+.reveal.on { opacity:1; transform:translateY(0) }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:1100px) {
+  .hero { grid-template-columns:1fr; min-height:auto }
+  .hero-right { border-top:1px solid var(--border); border-left:none; padding:48px 44px }
+  .hero-left { border-right:none }
+  .kpi-grid { grid-template-columns:repeat(4,1fr) }
+  .pfeat { grid-template-columns:1fr }
+  .pfr { border-left:none; border-top:1px solid var(--border) }
+  .pgrid { grid-template-columns:1fr 1fr }
+  .sk-layout { grid-template-columns:1fr } .sk-intro { position:static }
+}
+@media(max-width:768px) {
+  nav { padding:0 24px } .nav-ul { display:none }
+  .hero-left { padding:100px 28px 60px } .hero-right { padding:40px 28px 60px }
+  .wrap { padding:68px 28px } footer { padding:18px 28px }
+  .pgrid { grid-template-columns:1fr } .sk-grid { grid-template-columns:1fr }
+  .tli { grid-template-columns:1fr; gap:6px } .tld { text-align:left }
+  .ct-layout { grid-template-columns:1fr } .kpi-grid { grid-template-columns:1fr 1fr }
+  .hero-name-row { flex-direction:column; align-items:flex-start; gap:20px }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+     ✏️ Pour modifier : change le texte entre les balises.
+     ============================================================ -->
+<nav>
+  <!-- ✏️ Ton nom dans la nav -->
+  <a href="index.html" class="nav-logo"><em>Inès Amdjahed</em><span> ·</span></a>
+
+  <ul class="nav-ul">
+    <!-- ✏️ Les liens de navigation — href="#projets" = ancre sur cette page -->
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#competences">Stack</a></li>
+    <li><a href="#parcours">Parcours</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <!-- ✏️ Le bouton CTA — remplace l'adresse email -->
+  <a href="mailto:ines.amdjahed@email.com" class="nav-cta">Me contacter</a>
+</nav>
+
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+
+  <!-- Colonne gauche : nom + intro + stack -->
+  <div class="hero-left">
+
+    <!-- ✏️ Badge de disponibilité — modifie le texte si besoin -->
+    <div class="badge au d1">
+      <span class="bdot"></span>
+      Disponible · Data Analyst Médias &amp; Audiences
+    </div>
+
+    <!-- Bloc nom + photo côte à côte -->
+    <div class="hero-name-row au d2">
+      <h1>Inès<br><em>Amdjahed</em></h1>
+
+      <!-- ✏️ PHOTO — 3 options :
+           Option A (avec photo) : décommente la ligne <img> ci-dessous
+             et remplace "photo.jpg" par ton fichier.
+             Place le fichier image dans le même dossier que index.html.
+
+           Option B (sans photo pour l'instant) : laisse le placeholder.
+
+           Option C (supprimer) : efface tout le bloc hero-photo-placeholder.
+      -->
+
+      <!-- Option A — décommente quand tu as ta photo :
+      <img src="photo.jpg" alt="Inès Amdjahed" class="hero-photo">
+      -->
+
+      <!-- Option B — placeholder temporaire (supprime quand tu mets la vraie photo) -->
+      <div class="hero-photo-placeholder">ta<br>photo<br>ici</div>
+
+    </div>
+
+    <!-- ✏️ Sous-titre / rôle -->
+    <div class="hero-role au d3">M2 Info-Com · Paris Nanterre · 2025</div>
+
+    <!-- ✏️ PHRASE D'INTRO — c'est ici que tu te présentes.
+         Modifie librement le texte. Utilise <strong> pour mettre en gras
+         et <em> pour colorer en cyan. -->
+    <p class="hero-desc au d3">
+      Analyste data avec un pied dans les <strong>sciences humaines</strong>
+      et l'autre dans le <strong>code</strong> — je traduis des données brutes
+      en récits qui ont du sens.
+      Curieuse par nature, <em>rigoureuse par méthode</em> :
+      je construis l'analyse de bout en bout,
+      de la collecte au dashboard final.
+    </p>
+
+    <!-- ✏️ Boutons d'action — remplace les href par tes vraies URLs -->
+    <div class="actions au d4">
+      <a href="https://github.com/InesAjd92" target="_blank" class="btn-p">↗ Voir mes projets</a>
+      <a href="#contact" class="btn-g">Contact</a>
+    </div>
+
+    <!-- ✏️ STACK — ajoute / supprime des pills selon tes compétences.
+         Classes disponibles :
+           p-c = cyan (Python, SQL, Power BI...)
+           p-b = bleu (R, NLP...)
+           p-t = teal/vert (sources médias)
+           p-a = amber/orange (autres outils)
+           p-d = gris discret (compétences secondaires)
+    -->
+    <div class="stack au d5">
+      <span class="pill p-c">Python</span>
+      <span class="pill p-c">Pandas</span>
+      <span class="pill p-b">R</span>
+      <span class="pill p-d">Scipy</span>
+      <span class="pill p-d">Matplotlib</span>
+      <span class="pill p-d">Seaborn</span>
+      <span class="pill p-c">SQL</span>
+      <span class="pill p-c">Power BI</span>
+      <span class="pill p-d">Tableau</span>
+      <span class="pill p-t">Médiamétrie</span>
+      <span class="pill p-t">CNC / DEPS</span>
+      <span class="pill p-t">GWI</span>
+      <span class="pill p-b">IRaMuTeQ</span>
+      <span class="pill p-a">ARCOM</span>
+    </div>
+  </div>
+
+  <!-- Colonne droite : dashboard KPIs -->
+  <div class="hero-right">
+
+    <!-- ✏️ Label du panel -->
+    <div class="plbl">// Projet phare · résultats</div>
+
+    <!-- ✏️ KPIs — modifie les valeurs (.kv) et les labels (.kl) -->
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kv">−52%</div>
+        <div class="kl">TV 15-34 ans<br>2013 → 2023</div>
+      </div>
+      <div class="kpi">
+        <div class="kv">r=.78</div>
+        <div class="kl">Pearson H1<br>p &lt; 0.01</div>
+      </div>
+      <div class="kpi">
+        <div class="kv">+4h</div>
+        <div class="kl">Fossé généra-<br>tionnel 2023</div>
+      </div>
+      <div class="kpi">
+        <div class="kv">3/3</div>
+        <div class="kl">Hypothèses<br>confirmées</div>
+      </div>
+    </div>
+
+    <!-- Mini graphique en barres — données TV 15-34 ans 2013-2023 -->
+    <!-- ✏️ Pour modifier une barre : change la valeur height (en px)
+         et data-v (tooltip au survol). Classe "c" = cyan, "g" = gris (COVID) -->
+    <div class="spark">
+      <div class="spark-h">
+        <span class="spark-t">// TV 15-34 ans · min/jour</span>
+        <span class="spark-b">CNC/Médiamétrie</span>
+      </div>
+      <div class="bars">
+        <div class="bar c" style="height:52px" data-v="155 min (2013)"></div>
+        <div class="bar c" style="height:49px" data-v="148 min (2014)"></div>
+        <div class="bar c" style="height:46px" data-v="140 min (2015)"></div>
+        <div class="bar c" style="height:43px" data-v="131 min (2017)"></div>
+        <div class="bar c" style="height:38px" data-v="116 min (2018)"></div>
+        <div class="bar c" style="height:33px" data-v="103 min (2019)"></div>
+        <div class="bar g" style="height:37px" data-v="115 min (2020 — COVID)"></div>
+        <div class="bar c" style="height:31px" data-v="98 min (2021)"></div>
+        <div class="bar c" style="height:26px" data-v="83 min (2022)"></div>
+        <div class="bar c" style="height:23px" data-v="74 min (2023)"></div>
+      </div>
+      <div class="years">
+        <div class="yr">13</div><div class="yr">14</div><div class="yr">15</div>
+        <div class="yr">17</div><div class="yr">18</div><div class="yr">19</div>
+        <div class="yr">20</div><div class="yr">21</div><div class="yr">22</div>
+        <div class="yr">23</div>
+      </div>
+    </div>
+
+    <!-- ✏️ Status — modifie le texte de disponibilité -->
+    <div class="status">
+      <div class="sdot"></div>
+      <div class="stxt">
+        <strong>Ouverte aux opportunités</strong><br>
+        Médias · Études · Agence data — Paris &amp; remote
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PROJETS
+     ✏️ Pour ajouter un projet : duplique un bloc <a class="pcard">
+        et modifie le texte. Pour lier vers une page projet :
+        change href="projet-social-media.html" par ton fichier.
+     ============================================================ -->
+<section id="projets">
+  <div class="wrap">
+    <div class="sec-h reveal">
+      <span class="sec-tag">Projets</span>
+      <h2>Ce que j'ai <em>construit</em></h2>
+      <div class="sec-line"></div>
+    </div>
+
+    <!-- Projet featured — lien vers la page dédiée -->
+    <!-- ✏️ href="..." → remplace par le nom de ta page HTML projet -->
+    <a href="projet-social-media.html" class="pfeat reveal">
+      <div class="pfl">
+        <div class="pf-ey">Projet principal · 2024-2025</div>
+        <!-- ✏️ Titre du projet -->
+        <h3 class="ptitle">Social Media vs Traditional Media</h3>
+        <!-- ✏️ Description courte -->
+        <p class="pdesc">
+          Analyse longitudinale 2013–2023 de la corrélation entre la montée des réseaux sociaux
+          et le déclin de la TV chez les 15-34 ans en France. Collecte, nettoyage,
+          EDA — 3 hypothèses testées et confirmées.
+        </p>
+        <!-- ✏️ Technologies utilisées — ajoute/supprime des <span class="chip"> -->
+        <div class="chips">
+          <span class="chip chip-a">Python</span>
+          <span class="chip chip-a">Pandas</span>
+          <span class="chip chip-a">Scipy</span>
+          <span class="chip">Matplotlib</span>
+          <span class="chip">CNC / Médiamétrie</span>
+          <span class="chip">GWI</span>
+        </div>
+        <div class="pcta">Voir le projet ↗</div>
+      </div>
+      <!-- ✏️ Métriques clés du projet — modifie .mval et .mlbl -->
+      <div class="pfr">
+        <div class="plbl">// Résultats</div>
+        <div><div class="mval">−52%</div><div class="mlbl">TV 15-34 ans · 2013 → 2023</div></div>
+        <div class="msep"></div>
+        <div><div class="mval">r = .78</div><div class="mlbl">Corrélation Pearson H1 · p &lt; 0.01</div></div>
+        <div class="msep"></div>
+        <div><div class="mval">4h/j</div><div class="mlbl">Fossé 50ans+ vs 15-34 en 2023</div></div>
+      </div>
+    </a>
+
+    <!-- Grille des autres projets -->
+    <div class="pgrid">
+
+      <!-- ✏️ Projet 2 -->
+      <a href="projet-hacker-news.html" class="pcard reveal">
+        <div class="pnum">// 02</div>
+        <div class="pch">
+          <h3 class="pctitle">Hacker News — EDA</h3>
+          <span class="parr">↗</span>
+        </div>
+        <p class="pcdesc">300k+ posts · patterns temporels, corrélations votes/commentaires, catégories les plus engageantes.</p>
+        <div class="chips">
+          <span class="chip chip-a">Python</span>
+          <span class="chip">Pandas</span>
+          <span class="chip">Seaborn</span>
+        </div>
+      </a>
+
+      <!-- ✏️ Projet 3 -->
+      <a href="projet-memoire.html" class="pcard reveal">
+        <div class="pnum">// 03</div>
+        <div class="pch">
+          <h3 class="pctitle">Rhétorique conspirationniste — Mémoire M2</h3>
+          <span class="parr">↗</span>
+        </div>
+        <p class="pcdesc">Analyse textométrique · Affaire Chinese Balloons · IRaMuTeQ, sentiment analysis, cartographie lexicale.</p>
+        <div class="chips">
+          <span class="chip p-b">R</span>
+          <span class="chip">IRaMuTeQ</span>
+          <span class="chip">sentimentr</span>
+        </div>
+      </a>
+
+      <!-- ✏️ Projet 4 -->
+      <a href="projet-audiences-tv.html" class="pcard reveal">
+        <div class="pnum">// 04</div>
+        <div class="pch">
+          <h3 class="pctitle">Audiences TV &amp; Cinéma France</h3>
+          <span class="parr">↗</span>
+        </div>
+        <p class="pcdesc">EDA audiences TV et fréquentation cinéma · données CNC 2009–2023 · Matplotlib, Seaborn.</p>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">CNC</span>
+          <span class="chip">Médiamétrie</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     COMPÉTENCES
+     ✏️ Ajoute/supprime des <span class="pill"> selon tes outils.
+     ============================================================ -->
+<section id="competences">
+  <div class="wrap">
+    <div class="sec-h reveal">
+      <span class="sec-tag">Stack</span>
+      <h2>Compétences <em>techniques</em></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="sk-layout">
+      <div class="sk-intro reveal">
+        <!-- ✏️ Texte d'intro de la section compétences -->
+        <p>De la collecte de données brutes au dashboard final — maîtrise de l'ensemble de la chaîne analytique, en quantitatif comme en qualitatif.</p>
+      </div>
+      <div class="sk-grid">
+
+        <!-- ✏️ Catégorie 1 — Python -->
+        <div class="skc reveal">
+          <div class="skh"><div class="skdot" style="background:var(--cyan)"></div><div class="skt">Python &amp; Analyse</div></div>
+          <div class="skp">
+            <span class="pill p-c">Pandas</span><span class="pill p-c">NumPy</span>
+            <span class="pill p-d">Matplotlib</span><span class="pill p-d">Seaborn</span>
+            <span class="pill p-d">Scipy</span><span class="pill p-d">Jupyter</span>
+          </div>
+        </div>
+
+        <!-- ✏️ Catégorie 2 — R -->
+        <div class="skc reveal">
+          <div class="skh"><div class="skdot" style="background:var(--blue)"></div><div class="skt">R &amp; NLP</div></div>
+          <div class="skp">
+            <span class="pill p-b">R base</span><span class="pill p-b">IRaMuTeQ</span>
+            <span class="pill p-b">sentimentr</span><span class="pill p-b">Textométrie</span>
+          </div>
+        </div>
+
+        <!-- ✏️ Catégorie 3 — BI -->
+        <div class="skc reveal">
+          <div class="skh"><div class="skdot" style="background:var(--teal)"></div><div class="skt">BI &amp; Visualisation</div></div>
+          <div class="skp">
+            <span class="pill p-t">Power BI</span><span class="pill p-t">Tableau</span>
+            <span class="pill p-c">SQL</span><span class="pill p-d">DAX</span>
+          </div>
+        </div>
+
+        <!-- ✏️ Catégorie 4 — Sources médias -->
+        <div class="skc reveal">
+          <div class="skh"><div class="skdot" style="background:var(--amber)"></div><div class="skt">Sources médias</div></div>
+          <div class="skp">
+            <span class="pill p-a">Médiamétrie</span><span class="pill p-a">CNC / DEPS</span>
+            <span class="pill p-a">GWI</span><span class="pill p-a">DataReportal</span>
+            <span class="pill p-a">ARCOM</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PARCOURS
+     ✏️ Duplique un bloc .tli pour ajouter une expérience.
+     ============================================================ -->
+<section id="parcours">
+  <div class="wrap">
+    <div class="sec-h reveal">
+      <span class="sec-tag">Parcours</span>
+      <h2>Formation &amp; <em>expériences</em></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div>
+
+      <!-- ✏️ Expérience 1 — modifie dates, rôle, organisation, description -->
+      <div class="tli reveal">
+        <div class="tld">2024 – 2025</div>
+        <div>
+          <div class="tlr">Master 2 — Information-Communication : Données et Société</div>
+          <div class="tlo">Université Paris Nanterre</div>
+          <div class="tldesc">Analyse quantitative et qualitative des données médias. Méthodes statistiques, NLP, visualisation. Mémoire : rhétorique conspirationniste et réseaux sociaux.</div>
+        </div>
+      </div>
+
+      <!-- ✏️ Expérience 2 -->
+      <div class="tli reveal">
+        <div class="tld">2022 – 2023</div>
+        <div>
+          <div class="tlr">Master 1 — Information-Communication</div>
+          <div class="tlo">Université Paris Nanterre</div>
+          <div class="tldesc">Mémoire : Sectes et conspirationnisme à l'ère post-vérité.</div>
+        </div>
+      </div>
+
+      <!-- ✏️ Duplique ce bloc pour ajouter un stage / alternance :
+      <div class="tli reveal">
+        <div class="tld">DATES</div>
+        <div>
+          <div class="tlr">Titre du poste</div>
+          <div class="tlo">Nom de l'entreprise</div>
+          <div class="tldesc">Description de tes missions.</div>
+        </div>
+      </div>
+      -->
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CONTACT
+     ✏️ Remplace les href par tes vraies URLs et adresses.
+     ============================================================ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-h reveal">
+      <span class="sec-tag">Contact</span>
+      <h2>Travaillons <em>ensemble</em></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="ct-layout">
+
+      <!-- ✏️ Citation / phrase de gauche -->
+      <div class="reveal">
+        <p class="ct-stmt">
+          Les données sans<br>
+          contexte ne sont<br>
+          <em>que du bruit.</em><br>
+          <span class="dim">Mon rôle est de<br>leur donner du sens.</span>
+        </p>
+      </div>
+
+      <div class="reveal">
+        <!-- ✏️ Texte au-dessus des liens -->
+        <div class="ct-sub">// Disponible · médias · études · agence · Paris &amp; remote</div>
+        <div class="ct-links">
+
+          <!-- ✏️ Email — remplace l'adresse -->
+          <a href="mailto:ines.amdjahed@email.com" class="cl">
+            <div class="cl-l"><span class="cl-ico">✉</span>ines.amdjahed@email.com</div>
+            <span class="cl-arr">↗</span>
+          </a>
+
+          <!-- ✏️ LinkedIn — remplace l'URL -->
+          <a href="https://linkedin.com/in/ines-amdjahed" target="_blank" class="cl">
+            <div class="cl-l"><span class="cl-ico">in</span>linkedin.com/in/ines-amdjahed</div>
+            <span class="cl-arr">↗</span>
+          </a>
+
+          <!-- ✏️ GitHub — remplace l'URL -->
+          <a href="https://github.com/InesAjd92" target="_blank" class="cl">
+            <div class="cl-l"><span class="cl-ico">gh</span>github.com/InesAjd92</div>
+            <span class="cl-arr">↗</span>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <!-- ✏️ Texte de gauche du footer -->
+  <div class="fl">© 2025 · Inès Amdjahed · Data Analyst</div>
+  <div class="fr">
+    <a href="https://github.com/InesAjd92" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/ines-amdjahed" target="_blank">LinkedIn</a>
+    <a href="mailto:ines.amdjahed@email.com">Email</a>
+  </div>
+</footer>
+
+
+<script>
+/* Scroll reveal — ne pas modifier */
+const obs = new IntersectionObserver(
+  entries => entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target) }
+  }),
+  { threshold:.08, rootMargin:'0px 0px -30px 0px' }
+);
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
