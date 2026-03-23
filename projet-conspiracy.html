@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil des croyants aux théories du complot — Inès Amdjahed</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080B0F;--s1:#0D1117;--s2:#131920;--s3:#1A2230;
+  --border:#1E2A38;--border2:#28394A;
+  --cyan:#00D4FF;--cyan-d:rgba(0,212,255,.08);
+  --teal:#00B8A0;--teal-d:rgba(0,184,160,.1);
+  --amber:#F5A623;--amber-d:rgba(245,166,35,.1);
+  --blue:#5B9CF6;--blue-d:rgba(91,156,246,.1);
+  --purple:#A78BFA;--purple-d:rgba(167,139,250,.1);
+  --ink:#E4EDF5;--mid:#7A8FA0;--muted:#435060;
+  --mono:'JetBrains Mono',monospace;--serif:'Playfair Display',serif;--sans:'DM Sans',sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.65;overflow-x:hidden}
+::selection{background:var(--cyan-d);color:var(--cyan)}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.025) 1px,transparent 1px);background-size:52px 52px;pointer-events:none;z-index:0}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:58px;padding:0 56px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,11,15,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--ink);text-decoration:none}
+.nav-logo span{color:var(--cyan);font-style:normal}
+.nav-ul{display:flex;gap:2px;list-style:none}
+.nav-ul a{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:7px 14px;border-radius:5px;transition:all .15s}
+.nav-ul a:hover{color:var(--cyan);background:var(--cyan-d)}
+.nav-back{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);background:var(--cyan-d);border:1px solid rgba(0,212,255,.22);padding:8px 18px;border-radius:6px;text-decoration:none;transition:all .15s}
+.nav-back:hover{background:rgba(0,212,255,.14)}
+.wrap{max-width:960px;margin:0 auto;padding:100px 48px 80px;position:relative;z-index:1}
+.breadcrumb{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:36px}
+.breadcrumb a{color:var(--muted);text-decoration:none}.breadcrumb a:hover{color:var(--cyan)}.breadcrumb span{color:var(--cyan);margin:0 8px}
+.tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.proj-tag{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;padding:5px 12px;border-radius:4px;display:inline-block}
+.tag-r{color:var(--blue);background:var(--blue-d);border:1px solid rgba(91,156,246,.2)}
+.tag-stat{color:var(--purple);background:var(--purple-d);border:1px solid rgba(167,139,250,.2)}
+.tag-data{color:var(--cyan);background:var(--cyan-d);border:1px solid rgba(0,212,255,.18)}
+h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:400;line-height:1.1;letter-spacing:-.025em;margin-bottom:20px;color:var(--ink)}
+h1 em{font-style:italic;color:var(--cyan)}
+.proj-sub{font-size:16px;color:var(--mid);line-height:1.8;max-width:680px;margin-bottom:32px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:36px}
+.chip{font-family:var(--mono);font-size:10px;letter-spacing:.05em;padding:4px 10px;border-radius:4px;background:var(--s2);color:var(--muted);border:1px solid var(--border)}
+.chip-b{background:var(--blue-d);color:var(--blue);border-color:rgba(91,156,246,.2)}
+.chip-p{background:var(--purple-d);color:var(--purple);border-color:rgba(167,139,250,.2)}
+.gh-btn{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:13px 26px;border-radius:7px;text-decoration:none;transition:all .2s var(--ease)}
+.gh-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(91,156,246,.35)}
+.divider{height:1px;background:var(--border);margin:48px 0}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:48px}
+.kpi{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:20px 18px;transition:border-color .2s}
+.kpi:hover{border-color:rgba(167,139,250,.3)}
+.kv{font-family:var(--serif);font-style:italic;line-height:1;margin-bottom:6px}
+.kv.big{font-size:2rem;color:var(--purple)}
+.kv.med{font-size:1.5rem;color:var(--blue)}
+.kl{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);line-height:1.5}
+h2{font-family:var(--serif);font-size:1.6rem;font-weight:400;color:var(--ink);margin-bottom:16px;padding-top:8px}
+h2 em{font-style:italic;color:var(--cyan)}
+p{font-size:14px;color:var(--mid);line-height:1.85;margin-bottom:16px}
+p strong{color:var(--ink);font-weight:500}
+
+/* Pipeline visuel */
+.pipeline{display:flex;align-items:center;gap:0;margin:24px 0;flex-wrap:wrap}
+.pipe-step{background:var(--s1);border:1px solid var(--border);border-radius:8px;padding:12px 18px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--mid);position:relative;flex-shrink:0}
+.pipe-step.active{border-color:rgba(167,139,250,.4);color:var(--purple);background:var(--purple-d)}
+.pipe-arrow{color:var(--muted);padding:0 8px;font-size:1rem;flex-shrink:0}
+
+/* Hypothèses */
+.hypo-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.hypo{background:var(--s1);border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:16px 20px}
+.hypo-label{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--purple);margin-bottom:6px}
+.hypo-text{font-size:13.5px;color:var(--mid);line-height:1.7}
+.hypo-result{font-family:var(--mono);font-size:10px;color:var(--teal);margin-top:8px;letter-spacing:.06em}
+
+/* Résultats */
+.result-list{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.result-item{display:flex;align-items:flex-start;gap:14px;font-size:13.5px;color:var(--mid);line-height:1.7}
+.result-item::before{content:'→';color:var(--purple);font-family:var(--mono);flex-shrink:0;margin-top:2px}
+
+/* Méthodes grid */
+.methods-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+.method-card{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:20px 22px;transition:border-color .2s}
+.method-card:hover{border-color:var(--border2)}
+.method-title{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.method-desc{font-size:12.5px;color:var(--mid);line-height:1.7}
+
+/* Collab */
+.collab-note{background:var(--s1);border:1px solid var(--border2);border-radius:10px;padding:18px 22px;margin-bottom:24px;font-size:13px;color:var(--mid)}
+.collab-note strong{color:var(--ink)}
+
+.proj-nav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:64px;padding-top:40px;border-top:1px solid var(--border)}
+.pnav-link{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:20px 24px;text-decoration:none;color:inherit;transition:all .2s}
+.pnav-link:hover{border-color:rgba(0,212,255,.28);background:var(--cyan-d)}
+.pnav-dir{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.pnav-title{font-family:var(--serif);font-size:1rem;color:var(--ink)}
+@media(max-width:768px){nav{padding:0 24px}.nav-ul{display:none}.wrap{padding:100px 24px 60px}.kpi-row{grid-template-columns:1fr 1fr}.methods-grid{grid-template-columns:1fr}.proj-nav{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><em>Inès Amdjahed</em><span> ·</span></a>
+  <ul class="nav-ul">
+    <li><a href="index.html#projets">Projets</a></li>
+    <li><a href="index.html#competences">Stack</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="index.html" class="nav-back">← Retour</a>
+</nav>
+
+<div class="wrap">
+  <div class="breadcrumb">
+    <a href="index.html">Accueil</a><span>/</span>Projets<span>/</span>Conspiracy Beliefs
+  </div>
+
+  <div class="tag-row">
+    <span class="proj-tag tag-r">R</span>
+    <span class="proj-tag tag-stat">Data Science</span>
+    <span class="proj-tag tag-data">OpenPsychometrics</span>
+  </div>
+
+  <h1>Profil des croyants<br>aux <em>théories du complot</em></h1>
+
+  <p class="proj-sub">
+    Analyse statistique avancée d'un dataset OpenPsychometrics sur les croyances
+    aux théories du complot. Qui croit aux théories sur les extraterrestres,
+    et pourquoi ? Réponses par ACP, ACM, clustering et random forest.
+  </p>
+
+  <div class="chips">
+    <span class="chip chip-b">R</span>
+    <span class="chip chip-b">FactoMineR</span>
+    <span class="chip chip-b">factoextra</span>
+    <span class="chip chip-p">PCA / MCA</span>
+    <span class="chip chip-p">HCPC</span>
+    <span class="chip chip-p">Random Forest</span>
+    <span class="chip chip-p">dagitty</span>
+    <span class="chip">OpenPsychometrics</span>
+  </div>
+
+  <a href="https://github.com/InesAjd92" target="_blank" class="gh-btn">↗ Voir sur GitHub</a>
+
+  <div class="divider"></div>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="kv big">2154+</div><div class="kl">Répondants<br>analysés</div></div>
+    <div class="kpi"><div class="kv med">15</div><div class="kl">Questions sur<br>les croyances</div></div>
+    <div class="kpi"><div class="kv med">10</div><div class="kl">Traits de<br>personnalité TIPI</div></div>
+    <div class="kpi"><div class="kv med">3</div><div class="kl">Clusters<br>identifiés</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Collab -->
+  <div class="collab-note">
+    Projet réalisé en binôme avec <strong>Amina Kihal</strong> dans le cadre du cours
+    <strong>Analyse de données avancée</strong>, M2 Information-Communication, Paris Nanterre.
+    Source des données : <strong>OpenPsychometrics</strong> — dataset "Conspiracy Beliefs Scale"
+    (données collectées librement sur le web, format CSV).
+  </div>
+
+  <h2>Contexte &amp; <em>problématique</em></h2>
+  <p>
+    Le dataset OpenPsychometrics contient les réponses de milliers de participants
+    à 15 questions sur les théories du complot (Q1-Q15), 10 traits de personnalité TIPI,
+    et des variables socio-démographiques (genre, éducation, religion, lieu de vie...).
+  </p>
+  <p>
+    Une <strong>ACP exploratoire initiale</strong> sur les 15 questions révèle que
+    les questions Q3, Q8 et Q13 — relatives aux extraterrestres — forment un groupe
+    cohérent et distinct. L'analyse se concentre donc sur ce sous-ensemble,
+    avec la construction d'un <strong>score alien</strong> agrégé.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Hypothèses <em>testées</em></h2>
+  <div class="hypo-grid">
+    <div class="hypo">
+      <div class="hypo-label">H1 — Personnalité</div>
+      <div class="hypo-text">Les individus croyant aux théories sur les extraterrestres présentent des traits de personnalité TIPI distincts.</div>
+      <div class="hypo-result">✅ Confirmée — "Disorganized, careless" corrélé positivement. "Reserved, quiet" corrélé négativement.</div>
+    </div>
+    <div class="hypo">
+      <div class="hypo-label">H2 — Facteurs socio-démographiques</div>
+      <div class="hypo-text">Des facteurs socio-démographiques spécifiques caractérisent les croyants aux théories alien.</div>
+      <div class="hypo-result">✅ Confirmée — Genre féminin, milieu rural, niveau lycée, profil religieux associés au score alien élevé.</div>
+    </div>
+    <div class="hypo">
+      <div class="hypo-label">H3 — Clustering</div>
+      <div class="hypo-text">Les croyants peuvent être regroupés en clusters distincts selon leurs caractéristiques.</div>
+      <div class="hypo-result">✅ Confirmée — 3 clusters identifiés via HCPC, fortement structurés par la variable "urban".</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>Pipeline <em>d'analyse</em></h2>
+
+  <div class="pipeline">
+    <div class="pipe-step active">Import CSV</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step active">ACP exploratoire</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step active">Score alien</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step active">ACM variables</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step active">HCPC clustering</div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step active">Random Forest</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>Méthodes <em>statistiques</em></h2>
+  <div class="methods-grid">
+    <div class="method-card">
+      <div class="method-title">ACP (Analyse en Composantes Principales)</div>
+      <div class="method-desc">Exploration initiale des 15 questions. Identification des Q3/Q8/Q13 comme groupe cohérent (théories alien). Détection d'individus atypiques (ind. 2154, 756, 257).</div>
+    </div>
+    <div class="method-card">
+      <div class="method-title">ACM (Analyse des Correspondances Multiples)</div>
+      <div class="method-desc">Corrélation du score alien avec les variables catégorielles une par une : genre, éducation, religion, lieu de vie, latéralité. Score alien utilisé comme variable quantitative supplémentaire.</div>
+    </div>
+    <div class="method-card">
+      <div class="method-title">HCPC (Clustering hiérarchique)</div>
+      <div class="method-desc">3 clusters identifiés. Cluster 1 : zones urbaines et suburbaines. Cluster 2 : zones rurales (100% rural, v-test infini). La variable "urban" structure fortement la partition.</div>
+    </div>
+    <div class="method-card">
+      <div class="method-title">Random Forest + Arbre de décision</div>
+      <div class="method-desc">Modélisation prédictive du score alien. Split 80/20 train/test. Variables les plus importantes selon varImpPlot. Deux arbres : un sur l'éducation seule, un sur la religion seule.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>Résultats <em>clés</em></h2>
+  <div class="result-list">
+    <div class="result-item">Le score alien (moyenne des questions Q3/Q8/Q13, normalisée sur 5) révèle une population distincte de croyants.</div>
+    <div class="result-item">Les personnes s'identifiant comme femmes sont plus corrélées au score alien que les hommes, toutes choses égales par ailleurs.</div>
+    <div class="result-item">Le niveau d'éducation "lycée" (high school) est associé à un score alien plus élevé. A contrario, les diplômés universitaires et de graduate degree croient moins aux théories alien.</div>
+    <div class="result-item">Être religieux est positivement corrélé au score alien — confirmé par l'ACM et l'arbre de décision.</div>
+    <div class="result-item">Le trait de personnalité TIPI "Disorganized, careless" est le plus fortement corrélé positivement, tandis que "Reserved, quiet" est corrélé négativement.</div>
+    <div class="result-item">Les personnes ambidextres ou gauchères ont tendance à scorer plus haut que les droitières.</div>
+    <div class="result-item">Le DAG (graphe acyclique dirigé) modélise les dépendances causales supposées entre variables via le package dagitty.</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>Limites &amp; <em>discussion</em></h2>
+  <p>
+    Les résultats sont <strong>associatifs, non causaux</strong>. La construction du score alien
+    (moyenne simple des 3 questions) est une simplification qui pourrait être affinée
+    par une pondération factorielle.
+  </p>
+  <p>
+    Le DAG proposé via dagitty repose sur des hypothèses théoriques a priori et non sur
+    des tests d'indépendance conditionnelle validés statistiquement sur ce dataset.
+  </p>
+
+  <div class="proj-nav">
+    <a href="index.html#projets" class="pnav-link">
+      <div class="pnav-dir">← Retour</div>
+      <div class="pnav-title">Tous les projets</div>
+    </a>
+    <a href="projet-ina-mip.html" class="pnav-link" style="text-align:right">
+      <div class="pnav-dir">Projet suivant →</div>
+      <div class="pnav-title">INA / MIP — OVNI et médias</div>
+    </a>
+  </div>
+</div>
+</body>
+</html>

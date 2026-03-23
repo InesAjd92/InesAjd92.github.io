@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OVNI et médias — INA/MIP — Inès Amdjahed</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080B0F;--s1:#0D1117;--s2:#131920;--s3:#1A2230;
+  --border:#1E2A38;--border2:#28394A;
+  --cyan:#00D4FF;--cyan-d:rgba(0,212,255,.08);
+  --teal:#00B8A0;--teal-d:rgba(0,184,160,.1);
+  --amber:#F5A623;--amber-d:rgba(245,166,35,.1);
+  --blue:#5B9CF6;--blue-d:rgba(91,156,246,.1);
+  --purple:#A78BFA;--purple-d:rgba(167,139,250,.1);
+  --green:#34D399;--green-d:rgba(52,211,153,.1);
+  --ink:#E4EDF5;--mid:#7A8FA0;--muted:#435060;
+  --mono:'JetBrains Mono',monospace;--serif:'Playfair Display',serif;--sans:'DM Sans',sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.65;overflow-x:hidden}
+::selection{background:var(--cyan-d);color:var(--cyan)}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.025) 1px,transparent 1px);background-size:52px 52px;pointer-events:none;z-index:0}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:58px;padding:0 56px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,11,15,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--ink);text-decoration:none}.nav-logo span{color:var(--cyan);font-style:normal}
+.nav-ul{display:flex;gap:2px;list-style:none}.nav-ul a{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:7px 14px;border-radius:5px;transition:all .15s}.nav-ul a:hover{color:var(--cyan);background:var(--cyan-d)}
+.nav-back{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);background:var(--cyan-d);border:1px solid rgba(0,212,255,.22);padding:8px 18px;border-radius:6px;text-decoration:none;transition:all .15s}.nav-back:hover{background:rgba(0,212,255,.14)}
+.wrap{max-width:960px;margin:0 auto;padding:100px 48px 80px;position:relative;z-index:1}
+.breadcrumb{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:36px}
+.breadcrumb a{color:var(--muted);text-decoration:none}.breadcrumb a:hover{color:var(--cyan)}.breadcrumb span{color:var(--cyan);margin:0 8px}
+.tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.proj-tag{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;padding:5px 12px;border-radius:4px;display:inline-block}
+.tag-r{color:var(--blue);background:var(--blue-d);border:1px solid rgba(91,156,246,.2)}
+.tag-ina{color:var(--green);background:var(--green-d);border:1px solid rgba(52,211,153,.2)}
+.tag-corpus{color:var(--amber);background:var(--amber-d);border:1px solid rgba(245,166,35,.2)}
+h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:400;line-height:1.1;letter-spacing:-.025em;margin-bottom:20px;color:var(--ink)}
+h1 em{font-style:italic;color:var(--cyan)}
+.proj-sub{font-size:16px;color:var(--mid);line-height:1.8;max-width:680px;margin-bottom:32px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:36px}
+.chip{font-family:var(--mono);font-size:10px;letter-spacing:.05em;padding:4px 10px;border-radius:4px;background:var(--s2);color:var(--muted);border:1px solid var(--border)}
+.chip-b{background:var(--blue-d);color:var(--blue);border-color:rgba(91,156,246,.2)}
+.chip-g{background:var(--green-d);color:var(--green);border-color:rgba(52,211,153,.2)}
+.gh-btn{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#060809;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:13px 26px;border-radius:7px;text-decoration:none;transition:all .2s var(--ease)}
+.gh-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(52,211,153,.3)}
+.divider{height:1px;background:var(--border);margin:48px 0}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:48px}
+.kpi{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:20px 18px;transition:border-color .2s}
+.kpi:hover{border-color:rgba(52,211,153,.3)}
+.kv{font-family:var(--serif);font-style:italic;font-size:1.85rem;color:var(--green);line-height:1;margin-bottom:6px}
+.kl{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);line-height:1.5}
+h2{font-family:var(--serif);font-size:1.6rem;font-weight:400;color:var(--ink);margin-bottom:16px;padding-top:8px}
+h2 em{font-style:italic;color:var(--cyan)}
+p{font-size:14px;color:var(--mid);line-height:1.85;margin-bottom:16px}
+p strong{color:var(--ink);font-weight:500}
+
+/* Contexte institutionnel */
+.inst-note{background:var(--s1);border:1px solid rgba(52,211,153,.25);border-left:3px solid var(--green);border-radius:0 10px 10px 0;padding:18px 22px;margin-bottom:24px}
+.inst-title{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+.inst-text{font-size:13px;color:var(--mid);line-height:1.7}
+
+/* Questions de recherche */
+.rq-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.rq{background:var(--s1);border:1px solid var(--border);border-radius:8px;padding:16px 20px;font-size:13.5px;color:var(--mid);line-height:1.7;position:relative;padding-left:44px}
+.rq::before{content:counter(rq);counter-increment:rq;position:absolute;left:16px;top:16px;font-family:var(--mono);font-size:10px;color:var(--green);font-weight:700;background:var(--green-d);width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(52,211,153,.3)}
+.rq-grid{counter-reset:rq}
+
+/* Corpus */
+.corpus-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+.corpus-card{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:20px;transition:border-color .2s}
+.corpus-card:hover{border-color:var(--border2)}
+.cc-title{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.cc-desc{font-size:12.5px;color:var(--mid);line-height:1.7}
+
+/* Résultats */
+.result-list{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.result-item{display:flex;align-items:flex-start;gap:14px;font-size:13.5px;color:var(--mid);line-height:1.7}
+.result-item::before{content:'→';color:var(--green);font-family:var(--mono);flex-shrink:0;margin-top:2px}
+
+/* Biais */
+.biais-note{background:var(--s1);border:1px solid var(--border2);border-radius:10px;padding:18px 22px;margin-bottom:24px}
+.biais-title{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.biais-items{display:flex;flex-direction:column;gap:6px}
+.biais-item{font-size:13px;color:var(--mid);display:flex;gap:12px}
+.biais-item::before{content:'⚠';color:var(--amber);flex-shrink:0}
+
+.proj-nav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:64px;padding-top:40px;border-top:1px solid var(--border)}
+.pnav-link{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:20px 24px;text-decoration:none;color:inherit;transition:all .2s}
+.pnav-link:hover{border-color:rgba(0,212,255,.28);background:var(--cyan-d)}
+.pnav-dir{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.pnav-title{font-family:var(--serif);font-size:1rem;color:var(--ink)}
+@media(max-width:768px){nav{padding:0 24px}.nav-ul{display:none}.wrap{padding:100px 24px 60px}.kpi-row{grid-template-columns:1fr 1fr}.corpus-grid{grid-template-columns:1fr}.proj-nav{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><em>Inès Amdjahed</em><span> ·</span></a>
+  <ul class="nav-ul">
+    <li><a href="index.html#projets">Projets</a></li>
+    <li><a href="index.html#competences">Stack</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="index.html" class="nav-back">← Retour</a>
+</nav>
+
+<div class="wrap">
+  <div class="breadcrumb">
+    <a href="index.html">Accueil</a><span>/</span>Projets<span>/</span>INA / MIP
+  </div>
+
+  <div class="tag-row">
+    <span class="proj-tag tag-ina">INA / MIP</span>
+    <span class="proj-tag tag-r">R · IRaMuTeQ</span>
+    <span class="proj-tag tag-corpus">5 328 notices</span>
+  </div>
+
+  <h1>OVNI et <em>représentations médiatiques</em></h1>
+
+  <p class="proj-sub">
+    Séminaire MIP (Explorations numériques des archives INA) en collaboration avec l'EUR ArTec.
+    Analyse de 5 328 notices sur les OVNI et les extraterrestres dans les médias français
+    depuis 1967, par IRaMuTeQ et classification de Reinert.
+  </p>
+
+  <div class="chips">
+    <span class="chip chip-b">R</span>
+    <span class="chip chip-b">IRaMuTeQ</span>
+    <span class="chip chip-g">Archives INA</span>
+    <span class="chip chip-g">MIP ArTec</span>
+    <span class="chip">Textométrie</span>
+    <span class="chip">Classification Reinert</span>
+    <span class="chip">Corpus multimédia</span>
+  </div>
+
+  <a href="https://github.com/InesAjd92" target="_blank" class="gh-btn">↗ Voir sur GitHub</a>
+
+  <div class="divider"></div>
+
+  <!-- Contexte institutionnel -->
+  <div class="inst-note">
+    <div class="inst-title">Contexte institutionnel</div>
+    <div class="inst-text">
+      Séminaire <strong>MIP — Explorations numériques des archives de l'INA</strong>,
+      organisé par les M2 CRDM, DES et DEFI en collaboration avec l'EUR ArTec (Université Paris Nanterre).
+      Sujet n°11 : <em>"La vie, entre controverses et défis"</em>.
+      Encadrant·e·s : <strong>Camille Claverie et Marta Severo</strong>.
+      Projet collectif en groupe de 4 étudiants, travail en sprint sur corpus INA.
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi"><div class="kv">5 328</div><div class="kl">Notices<br>corpus initial</div></div>
+    <div class="kpi"><div class="kv">990</div><div class="kl">Notices après<br>filtrage</div></div>
+    <div class="kpi"><div class="kv">1967</div><div class="kl">Borne<br>chronologique</div></div>
+    <div class="kpi"><div class="kv">4</div><div class="kl">Types de<br>médias</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>Questions de <em>recherche</em></h2>
+  <div class="rq-grid">
+    <div class="rq">De quelle manière la représentation des OVNI et des extraterrestres diffère-t-elle selon les médias, et a-t-elle un impact sur la perception publique ?</div>
+    <div class="rq">Sur quels critères les médias se différencient-ils dans leur représentation du sujet ?</div>
+    <div class="rq">Le sujet des OVNI est-il abordé de manière crédule ou sceptique selon les différents médias ?</div>
+    <div class="rq">De quelle manière les supports médiatiques ont-ils influencé la perception publique des OVNI et extraterrestres ?</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>Corpus et <em>sources</em></h2>
+  <div class="corpus-grid">
+    <div class="corpus-card">
+      <div class="cc-title">Journaux télévisés</div>
+      <div class="cc-desc">Archives INA — JT nationaux depuis 1967. Traitement des résumés et titres.</div>
+    </div>
+    <div class="corpus-card">
+      <div class="cc-title">Magazines</div>
+      <div class="cc-desc">Presse magazine — notices descriptives, analyse des champs textuels.</div>
+    </div>
+    <div class="corpus-card">
+      <div class="cc-title">Documentaires</div>
+      <div class="cc-desc">Documentaires TV — descriptions longues, angle plus factuel ou sensationnaliste.</div>
+    </div>
+    <div class="corpus-card">
+      <div class="cc-title">Fictions + Web</div>
+      <div class="cc-desc">Contenus fictionnels et sources web. Titres et descriptions analysés séparément.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2>Méthode <em>IRaMuTeQ</em></h2>
+  <p>
+    Le corpus INA a été converti au format IRaMuTeQ via un <strong>script R personnalisé</strong>
+    (fonction <code style="font-family:var(--mono);color:var(--blue);background:var(--s2);padding:2px 6px;border-radius:3px">dataframe2iramuteq()</code>),
+    avec une liste de mots à supprimer adaptée aux spécificités du corpus
+    (mots en langues étrangères, URLs, émojis, noms propres récurrents non informatifs).
+  </p>
+  <p>
+    La <strong>classification de Reinert</strong> (méthode des classes de discours)
+    regroupe les formes lexicales par leur indépendance statistique au test du chi2.
+    Deux analyses distinctes ont été menées : sur les <strong>résumés</strong> et
+    sur les <strong>titres web</strong>.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Résultats &amp; <em>conclusions</em></h2>
+  <div class="result-list">
+    <div class="result-item">Similitude des sujets traités entre médias traditionnels et web, contrairement aux hypothèses initiales de différenciation forte.</div>
+    <div class="result-item">Les classes de discours IRaMuTeQ révèlent des registres récurrents : scientifique/institutionnel, populaire/complot, dramatique/fiction.</div>
+    <div class="result-item">Impossibilité de confirmer les hypothèses de recherche sur l'influence sur la perception publique — le corpus n'intègre pas de données d'audience ou d'engagement.</div>
+    <div class="result-item">Piste identifiée : une analyse factorielle pour déterminer les variables corrélées entre types de médias et registres de traitement.</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Biais -->
+  <div class="biais-note">
+    <div class="biais-title">Biais identifiés et limites</div>
+    <div class="biais-items">
+      <div class="biais-item">Résumés qui parlent d'autres programmes (contamination du corpus)</div>
+      <div class="biais-item">Classes génériques peu discriminantes dans certaines partitions</div>
+      <div class="biais-item">Mots étrangers, emojis et sigles qui passent à travers le nettoyage IRaMuTeQ</div>
+      <div class="biais-item">Corpus biaisé vers les médias audiovisuels — sous-représentation de la presse écrite</div>
+    </div>
+  </div>
+
+  <h2>Compétences <em>mobilisées</em></h2>
+  <p>
+    Ce projet a mobilisé le travail sur <strong>corpus de données réelles</strong>
+    (archives institutionnelles INA), des méthodes à la fois <strong>qualitatives et quantitatives</strong>,
+    et a été réalisé en <strong>mode sprint</strong> dans un délai court en groupe de 4.
+    Le script R de conversion IRaMuTeQ et la liste de nettoyage ont été construits
+    entièrement par le groupe à partir des données brutes.
+  </p>
+
+  <div class="proj-nav">
+    <a href="projet-conspiracy.html" class="pnav-link">
+      <div class="pnav-dir">← Projet précédent</div>
+      <div class="pnav-title">Conspiracy Beliefs</div>
+    </a>
+    <a href="index.html#projets" class="pnav-link" style="text-align:right">
+      <div class="pnav-dir">Retour →</div>
+      <div class="pnav-title">Tous les projets</div>
+    </a>
+  </div>
+</div>
+</body>
+</html>
