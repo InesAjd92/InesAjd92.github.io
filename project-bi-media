@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Media Intelligence Dashboard — BI Project</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg:     #080B0F;
+    --s1:     #0D1117;
+    --s2:     #131920;
+    --s3:     #1A2230;
+    --border: #1E2A38;
+    --border2:#28394A;
+    --cyan:   #00D4FF;
+    --cyan-d: rgba(0,212,255,.08);
+    --cyan-m: rgba(0,212,255,.35);
+    --teal:   #00B8A0;
+    --teal-d: rgba(0,184,160,.1);
+    --amber:  #F5A623;
+    --amber-d:rgba(245,166,35,.1);
+    --blue:   #5B9CF6;
+    --blue-d: rgba(91,156,246,.1);
+    --ink:    #E4EDF5;
+    --mid:    #7A8FA0;
+    --muted:  #435060;
+    --mono:  'JetBrains Mono', monospace;
+    --serif: 'Playfair Display', serif;
+    --sans:  'DM Sans', sans-serif;
+    --ease: cubic-bezier(.16,1,.3,1);
+  }
+  *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:var(--sans); background:var(--bg); color:var(--ink); font-size:15px; line-height:1.65; }
+
+  /* ── PAGE WRAPPER ── */
+  .page { max-width:1260px; margin:auto; padding:80px 72px; }
+
+  /* ── SECTION HEADER ── */
+  .section-eyebrow {
+    display:flex; align-items:center; gap:12px; margin-bottom:12px;
+  }
+  .section-eyebrow span {
+    font-family:var(--mono); font-size:10px; text-transform:uppercase;
+    letter-spacing:.12em; color:var(--cyan);
+  }
+  .section-eyebrow::after {
+    content:''; flex:1; height:1px; background:var(--border);
+  }
+  .section-title {
+    font-family:var(--serif); font-size:clamp(1.9rem,3vw,2.4rem);
+    font-weight:400; margin-bottom:8px;
+  }
+  .section-sub { color:var(--mid); max-width:620px; margin-bottom:48px; font-size:14px; }
+
+  /* ── PROJECT CARD ── */
+  .pcard {
+    background:var(--s1); border:1px solid var(--border); border-radius:14px;
+    overflow:hidden; transition:border-color .3s var(--ease), transform .3s var(--ease);
+  }
+  .pcard:hover { border-color:var(--border2); transform:translateY(-3px); }
+
+  /* CARD HEADER — visual */
+  .pcard-visual {
+    background: linear-gradient(135deg, #0a1520 0%, #0d1b2a 40%, #091419 100%);
+    border-bottom:1px solid var(--border);
+    padding:36px 36px 28px;
+    position:relative; overflow:hidden; min-height:320px;
+  }
+  .pcard-visual::before {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(ellipse 70% 60% at 70% 40%, rgba(0,212,255,.07) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 50% at 20% 80%, rgba(0,184,160,.05) 0%, transparent 70%);
+    pointer-events:none;
+  }
+
+  /* Dashboard mockup inside card */
+  .dash-mock {
+    position:relative; z-index:1;
+    background:var(--s2); border:1px solid var(--border); border-radius:10px;
+    padding:20px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;
+  }
+  .dash-mock-title {
+    grid-column:1/-1;
+    font-family:var(--mono); font-size:9px; text-transform:uppercase;
+    letter-spacing:.1em; color:var(--cyan); display:flex; align-items:center; gap:8px;
+    margin-bottom:4px;
+  }
+  .dash-mock-title::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--cyan); animation:blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+  .kpi-mini {
+    background:var(--s3); border:1px solid var(--border); border-radius:8px;
+    padding:12px 14px;
+  }
+  .kpi-mini-label { font-family:var(--mono); font-size:9px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:4px; }
+  .kpi-mini-val { font-family:var(--mono); font-size:18px; font-weight:700; color:var(--ink); line-height:1; }
+  .kpi-mini-delta { font-family:var(--mono); font-size:9px; margin-top:4px; }
+  .up { color:var(--teal); } .down { color:#FF6B6B; }
+
+  /* Bar chart mockup */
+  .chart-mock {
+    grid-column:1/-1; background:var(--s3); border:1px solid var(--border);
+    border-radius:8px; padding:14px 16px;
+  }
+  .chart-label { font-family:var(--mono); font-size:9px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+  .bars { display:flex; align-items:flex-end; gap:6px; height:60px; }
+  .bar-wrap { display:flex; flex-direction:column; align-items:center; gap:4px; flex:1; }
+  .bar {
+    width:100%; border-radius:3px 3px 0 0;
+    transition: height .8s var(--ease);
+  }
+  .bar-name { font-family:var(--mono); font-size:8px; color:var(--muted); white-space:nowrap; }
+  .bar-netflix  { background: linear-gradient(180deg,#00D4FF,rgba(0,212,255,.4)); }
+  .bar-prime    { background: linear-gradient(180deg,#5B9CF6,rgba(91,156,246,.4)); }
+  .bar-disney   { background: linear-gradient(180deg,#00B8A0,rgba(0,184,160,.4)); }
+  .bar-max      { background: linear-gradient(180deg,#7B61FF,rgba(123,97,255,.4)); }
+  .bar-peacock  { background: linear-gradient(180deg,#F5A623,rgba(245,166,35,.4)); }
+  .bar-paramount{ background: linear-gradient(180deg,#FF6B6B,rgba(255,107,107,.4)); }
+
+  /* Donut placeholder */
+  .donut-mock {
+    background:var(--s3); border:1px solid var(--border); border-radius:8px;
+    padding:14px; display:flex; align-items:center; gap:12px;
+  }
+  .donut-svg { flex-shrink:0; }
+  .donut-legend { display:flex; flex-direction:column; gap:5px; }
+  .donut-item { display:flex; align-items:center; gap:6px; font-family:var(--mono); font-size:8.5px; color:var(--mid); }
+  .donut-dot { width:7px; height:7px; border-radius:2px; flex-shrink:0; }
+
+  /* Sparkline mock */
+  .spark-mock {
+    background:var(--s3); border:1px solid var(--border); border-radius:8px;
+    padding:14px;
+  }
+  .spark-val { font-family:var(--mono); font-size:16px; font-weight:700; color:var(--cyan); }
+  .spark-sub { font-family:var(--mono); font-size:8px; color:var(--muted); margin-bottom:8px; }
+  .spark-line { width:100%; height:28px; }
+
+  /* CARD BODY */
+  .pcard-body { padding:28px 32px 32px; }
+  .pcard-meta { display:flex; align-items:center; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
+
+  .pill { font-family:var(--mono); font-size:10px; border-radius:4px; padding:3px 8px; }
+  .p-c { background:var(--cyan-d); color:var(--cyan); }
+  .p-t { background:var(--teal-d); color:var(--teal); }
+  .p-a { background:var(--amber-d); color:var(--amber); }
+  .p-b { background:var(--blue-d); color:var(--blue); }
+
+  .pcard-title { font-family:var(--serif); font-size:1.6rem; font-weight:400; margin-bottom:10px; }
+  .pcard-desc { color:var(--mid); font-size:14px; line-height:1.7; max-width:680px; margin-bottom:24px; }
+
+  /* Stats row */
+  .stats-row { display:flex; gap:24px; flex-wrap:wrap; margin-bottom:28px; padding:18px 20px;
+    background:var(--s2); border:1px solid var(--border); border-radius:8px; }
+  .stat-item { display:flex; flex-direction:column; gap:2px; }
+  .stat-num { font-family:var(--mono); font-size:15px; font-weight:700; color:var(--ink); }
+  .stat-lbl { font-family:var(--mono); font-size:9px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; }
+
+  /* Features grid */
+  .features { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:28px; }
+  .feat {
+    background:var(--s2); border:1px solid var(--border); border-radius:8px;
+    padding:14px 16px; display:flex; gap:12px; align-items:flex-start;
+  }
+  .feat-icon { font-size:18px; line-height:1; margin-top:2px; flex-shrink:0; }
+  .feat-label { font-size:13px; font-weight:500; color:var(--ink); margin-bottom:2px; }
+  .feat-desc { font-size:12px; color:var(--muted); line-height:1.5; }
+
+  /* Data sources */
+  .sources-row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:28px; }
+  .source-tag {
+    font-family:var(--mono); font-size:10px; color:var(--muted);
+    border:1px solid var(--border); border-radius:4px; padding:3px 9px;
+    transition:color .2s, border-color .2s;
+  }
+  .source-tag:hover { color:var(--cyan); border-color:var(--cyan-m); }
+  .sources-label { font-family:var(--mono); font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; }
+
+  /* CTA row */
+  .cta-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+  .btn-p {
+    background:var(--cyan); color:#060809; font-family:var(--mono); font-size:11px;
+    text-transform:uppercase; padding:12px 22px; border:none; border-radius:6px;
+    cursor:pointer; letter-spacing:.08em; font-weight:600; text-decoration:none;
+    display:inline-flex; align-items:center; gap:7px;
+    transition:opacity .2s, transform .2s var(--ease);
+  }
+  .btn-p:hover { opacity:.85; transform:translateY(-1px); }
+  .btn-g {
+    border:1px solid var(--border2); color:var(--mid); font-family:var(--mono); font-size:11px;
+    text-transform:uppercase; padding:11px 20px; border-radius:6px; background:transparent;
+    cursor:pointer; letter-spacing:.08em; text-decoration:none;
+    display:inline-flex; align-items:center; gap:7px;
+    transition:border-color .2s, color .2s;
+  }
+  .btn-g:hover { border-color:var(--border2); color:var(--ink); }
+
+  /* METHODOLOGY SECTION */
+  .method-wrap {
+    margin-top:64px; padding:36px; background:var(--s1); border:1px solid var(--border); border-radius:14px;
+  }
+  .method-title { font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--cyan); margin-bottom:20px; }
+  .method-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .method-step {
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .step-num { font-family:var(--mono); font-size:10px; color:var(--muted); }
+  .step-label { font-size:13px; font-weight:600; color:var(--ink); }
+  .step-desc { font-size:12px; color:var(--muted); line-height:1.55; }
+  .step-tools { display:flex; flex-wrap:wrap; gap:4px; margin-top:4px; }
+
+  /* INSIGHTS SECTION */
+  .insights-wrap { margin-top:48px; }
+  .insights-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .insight-card {
+    background:var(--s1); border:1px solid var(--border); border-radius:10px;
+    padding:20px 22px;
+    transition:border-color .2s;
+  }
+  .insight-card:hover { border-color:var(--border2); }
+  .insight-num { font-family:var(--mono); font-size:26px; font-weight:700; line-height:1; margin-bottom:6px; }
+  .insight-text { font-size:13px; color:var(--mid); line-height:1.6; }
+  .cyan-txt { color:var(--cyan); }
+  .teal-txt { color:var(--teal); }
+  .amber-txt { color:var(--amber); }
+  .blue-txt { color:var(--blue); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(24px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .au { opacity:0; animation:fadeUp .7s var(--ease) forwards; }
+  .au-1 { animation-delay:.05s; }
+  .au-2 { animation-delay:.15s; }
+  .au-3 { animation-delay:.25s; }
+  .au-4 { animation-delay:.35s; }
+
+  @media(max-width:900px) {
+    .page { padding:48px 28px; }
+    .features { grid-template-columns:1fr; }
+    .method-grid { grid-template-columns:1fr 1fr; }
+    .insights-grid { grid-template-columns:1fr 1fr; }
+    .dash-mock { grid-template-columns:1fr 1fr; }
+    .kpi-mini:last-of-type { display:none; }
+  }
+  @media(max-width:600px) {
+    .method-grid, .insights-grid { grid-template-columns:1fr; }
+    .dash-mock { grid-template-columns:1fr; }
+    .stats-row { flex-direction:column; gap:14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- SECTION HEADER -->
+  <div class="section-eyebrow au au-1">
+    <span>Projet BI — Data Analytics</span>
+  </div>
+  <h2 class="section-title au au-1">Global Media Intelligence</h2>
+  <p class="section-sub au au-2">
+    Dashboard Power BI d'analyse du marché mondial des médias numériques — streaming, réseaux sociaux et audiences 2024–2025.
+  </p>
+
+  <!-- MAIN PROJECT CARD -->
+  <div class="pcard au au-2">
+
+    <!-- VISUAL / DASHBOARD PREVIEW -->
+    <div class="pcard-visual">
+      <div class="dash-mock">
+        <div class="dash-mock-title">Media Intelligence Dashboard · Live</div>
+
+        <!-- KPIs -->
+        <div class="kpi-mini">
+          <div class="kpi-mini-label">Streaming Global</div>
+          <div class="kpi-mini-val">$230B</div>
+          <div class="kpi-mini-delta up">↑ +17.1% YoY</div>
+        </div>
+        <div class="kpi-mini">
+          <div class="kpi-mini-label">Utilisateurs Social</div>
+          <div class="kpi-mini-val">5.42B</div>
+          <div class="kpi-mini-delta up">↑ +4.7% YoY</div>
+        </div>
+        <div class="kpi-mini">
+          <div class="kpi-mini-label">Netflix Subs</div>
+          <div class="kpi-mini-val">310M</div>
+          <div class="kpi-mini-delta up">↑ +9.5M Q4</div>
+        </div>
+
+        <!-- Bar chart: subscribers by platform -->
+        <div class="chart-mock">
+          <div class="chart-label">Subscribers SVOD (millions) · Q4 2024</div>
+          <div class="bars">
+            <div class="bar-wrap">
+              <div class="bar bar-netflix" style="height:60px"></div>
+              <div class="bar-name">Netflix</div>
+            </div>
+            <div class="bar-wrap">
+              <div class="bar bar-prime" style="height:48px"></div>
+              <div class="bar-name">Prime</div>
+            </div>
+            <div class="bar-wrap">
+              <div class="bar bar-disney" style="height:30px"></div>
+              <div class="bar-name">Disney+</div>
+            </div>
+            <div class="bar-wrap">
+              <div class="bar bar-max" style="height:27px"></div>
+              <div class="bar-name">Max</div>
+            </div>
+            <div class="bar-wrap">
+              <div class="bar bar-peacock" style="height:15px"></div>
+              <div class="bar-name">Peacock</div>
+            </div>
+            <div class="bar-wrap">
+              <div class="bar bar-paramount" style="height:13px"></div>
+              <div class="bar-name">Param+</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Donut: US market share -->
+        <div class="donut-mock">
+          <svg class="donut-svg" width="54" height="54" viewBox="0 0 54 54">
+            <circle cx="27" cy="27" r="20" fill="none" stroke="#1A2230" stroke-width="10"/>
+            <!-- Netflix 24% -->
+            <circle cx="27" cy="27" r="20" fill="none" stroke="#00D4FF" stroke-width="10"
+              stroke-dasharray="30.2 95.8" stroke-dashoffset="0" transform="rotate(-90 27 27)"/>
+            <!-- Prime 22% -->
+            <circle cx="27" cy="27" r="20" fill="none" stroke="#5B9CF6" stroke-width="10"
+              stroke-dasharray="27.6 98.4" stroke-dashoffset="-30.2" transform="rotate(-90 27 27)"/>
+            <!-- Disney 12% -->
+            <circle cx="27" cy="27" r="20" fill="none" stroke="#00B8A0" stroke-width="10"
+              stroke-dasharray="15.1 110.9" stroke-dashoffset="-57.8" transform="rotate(-90 27 27)"/>
+            <!-- Others -->
+            <circle cx="27" cy="27" r="20" fill="none" stroke="#435060" stroke-width="10"
+              stroke-dasharray="52.9 73.1" stroke-dashoffset="-72.9" transform="rotate(-90 27 27)"/>
+          </svg>
+          <div class="donut-legend">
+            <div class="donut-item"><div class="donut-dot" style="background:#00D4FF"></div>Netflix 24%</div>
+            <div class="donut-item"><div class="donut-dot" style="background:#5B9CF6"></div>Prime 22%</div>
+            <div class="donut-item"><div class="donut-dot" style="background:#00B8A0"></div>Disney+ 12%</div>
+            <div class="donut-item"><div class="donut-dot" style="background:#435060"></div>Autres 42%</div>
+          </div>
+        </div>
+
+        <!-- Sparkline: live streaming growth -->
+        <div class="spark-mock" style="grid-column:span 2">
+          <div class="chart-label">Live Streaming Market — Croissance 2020→2030F</div>
+          <div class="spark-val">$100B <span style="font-size:11px;color:var(--teal)">→ $345B</span></div>
+          <div class="spark-sub">CAGR +23% · Source: Industry reports 2024</div>
+          <svg class="spark-line" viewBox="0 0 200 28" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#00D4FF" stop-opacity=".3"/>
+                <stop offset="100%" stop-color="#00D4FF" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <polyline points="0,24 30,20 60,17 90,13 120,10 150,6 180,3 200,1"
+              fill="none" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <polygon points="0,24 30,20 60,17 90,13 120,10 150,6 180,3 200,1 200,28 0,28"
+              fill="url(#sg)"/>
+          </svg>
+        </div>
+
+      </div><!-- /dash-mock -->
+    </div><!-- /pcard-visual -->
+
+    <!-- CARD BODY -->
+    <div class="pcard-body">
+
+      <!-- Meta pills -->
+      <div class="pcard-meta">
+        <span class="pill p-c">Power BI</span>
+        <span class="pill p-t">Excel</span>
+        <span class="pill p-a">DAX</span>
+        <span class="pill p-b">Power Query</span>
+        <span class="pill p-c">Data Viz</span>
+        <span class="pill p-t">API Web</span>
+      </div>
+
+      <h3 class="pcard-title">Global Media Intelligence Dashboard</h3>
+      <p class="pcard-desc">
+        Analyse complète du marché mondial des médias numériques : guerres du streaming, croissance des réseaux sociaux et évolution des audiences. Données collectées via API publiques (Statista, DataReportal, Business of Apps) et modélisées sous Power BI avec un modèle en étoile, des mesures DAX avancées et une mise à jour automatique via Power Query.
+      </p>
+
+      <!-- Key stats -->
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-num">4</div>
+          <div class="stat-lbl">Pages rapport</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">12+</div>
+          <div class="stat-lbl">Mesures DAX</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">6</div>
+          <div class="stat-lbl">Plateformes SVOD</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">8</div>
+          <div class="stat-lbl">Réseaux sociaux</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2024–25</div>
+          <div class="stat-lbl">Période analyse</div>
+        </div>
+      </div>
+
+      <!-- Feature grid -->
+      <div class="features">
+        <div class="feat">
+          <div class="feat-icon">📊</div>
+          <div>
+            <div class="feat-label">Vue Streaming Wars</div>
+            <div class="feat-desc">Comparatif abonnés, revenus ARPU et parts de marché US — Netflix, Disney+, Max, Prime Video, Peacock, Paramount+.</div>
+          </div>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">🌐</div>
+          <div>
+            <div class="feat-label">Social Media Monitor</div>
+            <div class="feat-desc">Croissance YoY des MAU par plateforme (Instagram +25%, TikTok, LinkedIn +14%), temps passé et taux d'engagement.</div>
+          </div>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">💸</div>
+          <div>
+            <div class="feat-label">Revenue & Ad Spend</div>
+            <div class="feat-desc">Dépenses publicitaires digitales ($678B forecast 2025), CTV +15.8% YoY, modèle ARPU par région et par service.</div>
+          </div>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">📡</div>
+          <div>
+            <div class="feat-label">Live Streaming Tracker</div>
+            <div class="feat-desc">Évolution du marché live ($100B → $345B en 2030, CAGR 23%), heures regardées et top catégories gaming/sports.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data sources -->
+      <div style="margin-bottom:10px">
+        <span class="sources-label">Sources de données · </span>
+      </div>
+      <div class="sources-row">
+        <span class="source-tag">Statista 2024–25</span>
+        <span class="source-tag">DataReportal</span>
+        <span class="source-tag">Business of Apps</span>
+        <span class="source-tag">The Wrap</span>
+        <span class="source-tag">Hollywood Reporter</span>
+        <span class="source-tag">MNTN Research</span>
+        <span class="source-tag">Smart Insights</span>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-row" style="margin-top:28px">
+        <a href="#" class="btn-p">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Voir le rapport Power BI
+        </a>
+        <a href="#" class="btn-g">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          Voir le dataset Excel
+        </a>
+      </div>
+
+    </div><!-- /pcard-body -->
+  </div><!-- /pcard -->
+
+  <!-- METHODOLOGY -->
+  <div class="method-wrap au au-3">
+    <div class="method-title">// Méthodologie & Stack technique</div>
+    <div class="method-grid">
+      <div class="method-step">
+        <div class="step-num">01 · Collecte</div>
+        <div class="step-label">Data Sourcing</div>
+        <div class="step-desc">Extraction manuelle & semi-automatisée depuis rapports publics (DataReportal, Statista), earnings calls et dashboards officiels des plateformes.</div>
+        <div class="step-tools">
+          <span class="pill p-b">Web scraping</span>
+          <span class="pill p-t">CSV/JSON</span>
+        </div>
+      </div>
+      <div class="method-step">
+        <div class="step-num">02 · Transformation</div>
+        <div class="step-label">Power Query / ETL</div>
+        <div class="step-desc">Nettoyage, normalisation des unités (M, B → valeurs brutes), gestion des valeurs manquantes et création de tables calendrier et de dimensions.</div>
+        <div class="step-tools">
+          <span class="pill p-a">Power Query</span>
+          <span class="pill p-t">M Language</span>
+        </div>
+      </div>
+      <div class="method-step">
+        <div class="step-num">03 · Modélisation</div>
+        <div class="step-label">Modèle en étoile</div>
+        <div class="step-desc">Schéma star schema avec table de faits (métriques) et dimensions (Plateforme, Date, Région, Catégorie). 12 mesures DAX : YoY%, CAGR, ARPU moyen pondéré.</div>
+        <div class="step-tools">
+          <span class="pill p-c">DAX</span>
+          <span class="pill p-a">Star Schema</span>
+        </div>
+      </div>
+      <div class="method-step">
+        <div class="step-num">04 · Visualisation</div>
+        <div class="step-label">Power BI Report</div>
+        <div class="step-desc">4 pages thématiques avec slicers dynamiques, bookmarks, drill-through et thème corporate custom. Export PDF + publication Power BI Service.</div>
+        <div class="step-tools">
+          <span class="pill p-c">Power BI</span>
+          <span class="pill p-b">Themes JSON</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY INSIGHTS -->
+  <div class="insights-wrap au au-4">
+    <div class="section-eyebrow" style="margin-top:64px; margin-bottom:20px">
+      <span>Insights clés extraits</span>
+    </div>
+    <div class="insights-grid">
+      <div class="insight-card">
+        <div class="insight-num cyan-txt">+17.1%</div>
+        <div class="insight-text">Le marché du streaming vidéo a dépassé <strong>$230 milliards</strong> en 2024, porté par les plateformes SVOD premium et la publicité CTV.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num teal-txt">5.42B</div>
+        <div class="insight-text">Utilisateurs actifs sur les réseaux sociaux en 2025 — <strong>63.9%</strong> de la population mondiale, avec Instagram en tête de croissance à +25% YoY.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num amber-txt">23%</div>
+        <div class="insight-text">CAGR du live streaming sur 2024–2030. Le marché passera de <strong>$100B à $345B</strong>, porté par le gaming, le live commerce et le sport.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num blue-txt">70M</div>
+        <div class="insight-text">Utilisateurs actifs du tier publicitaire Netflix — représente <strong>+55%</strong> des nouvelles inscriptions et a doublé les revenus pub en 2024.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num cyan-txt">$678B</div>
+        <div class="insight-text">Forecast des dépenses publicitaires digitales mondiales en 2025, soit <strong>68.4%</strong> de l'ensemble des investissements pub (source: Dentsu).</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num teal-txt">6.84</div>
+        <div class="insight-text">Nombre moyen de plateformes sociales utilisées par personne chaque mois — soulignant l'enjeu d'une stratégie <strong>multi-canal</strong> pour les marques médias.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+</body>
+</html>
