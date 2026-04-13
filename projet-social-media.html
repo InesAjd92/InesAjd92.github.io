@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- ✏️ Modifie le titre de l'onglet -->
-<title>Le déclin de la TV chez les jeunes adultes</title>
+<!--  Titre de l'onglet -->
+<title>Réseaux sociaux et effondrement de la TV chez les 15-34 ans</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 /* Les variables et styles de base sont identiques à index.html */
@@ -27,7 +27,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:15p
 ::selection{background:var(--cyan-d);color:var(--cyan)}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.025) 1px,transparent 1px);background-size:52px 52px;pointer-events:none;z-index:0}
 
-/* NAV — identique à index.html */
+/* NAV : identique à index.html */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;height:58px;padding:0 56px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,11,15,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
 .nav-logo{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--ink);text-decoration:none}
 .nav-logo span{color:var(--cyan);font-style:normal}
@@ -88,7 +88,7 @@ p strong{color:var(--ink);font-weight:500}
 /* Résultats liste */
 .result-list{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
 .result-item{display:flex;align-items:flex-start;gap:14px;font-size:13.5px;color:var(--mid);line-height:1.7}
-.result-item::before{content:'→';color:var(--cyan);font-family:var(--mono);flex-shrink:0;margin-top:2px}
+.result-item::before{content:'';color:var(--cyan);font-family:var(--mono);flex-shrink:0;margin-top:8px;width:5px;height:5px;border-radius:50%;background:var(--cyan);display:block}
 
 /* Navigation entre projets */
 .proj-nav{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:64px;padding-top:40px;border-top:1px solid var(--border)}
@@ -114,36 +114,28 @@ p strong{color:var(--ink);font-weight:500}
     <li><a href="index.html#competences">Stack</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
-  <a href="index.html" class="nav-back">← Retour</a>
+  <a href="index.html" class="nav-back">Retour</a>
 </nav>
 
 <div class="wrap">
 
-  <!-- Fil d'Ariane -->
   <div class="breadcrumb">
     <a href="index.html">Accueil</a>
     <span>/</span>
     Projets
     <span>/</span>
-    Le déclin de la TV chez les jeunes adultes
+    Réseaux sociaux &amp; effondrement de la TV chez les 15-34 ans
   </div>
 
-  <!-- Header -->
   <div class="proj-header">
-    <!-- ✏️ Tag / catégorie du projet -->
-    <div class="proj-tag">Analyse temporelle · EDA · Médias</div>
+    <div class="proj-tag">Analyse temporelle · EDA · Médias · France 2013-2023</div>
 
-    <!-- ✏️ Titre -->
-    <h1>Social media vs<br><em>Traditional media</em></h1>
+    <h1>Réseaux sociaux<br> &amp;<em>effondrement de la TV</em></h1>
 
-    <!-- ✏️ Sous-titre / description courte (1-2 phrases) -->
     <p class="proj-sub">
-      Dans quelle mesure la montée en puissance des réseaux sociaux est-elle
-      associée au déclin de la TV chez les jeunes adultes ?
-      Une analyse temporelle 2013–2023, données CNC, GWI et plateformes MAU.
+      Dans quelle mesure la montée en puissance des réseaux sociaux est-elle associée au déclin structurel de la TV chez les jeunes adultes en France ?
     </p>
 
-    <!-- ✏️ Technologies — ajoute/supprime des chips -->
     <div class="chips">
       <span class="chip chip-a">Python</span>
       <span class="chip chip-a">Pandas</span>
@@ -155,98 +147,219 @@ p strong{color:var(--ink);font-weight:500}
       <span class="chip">Jupyter</span>
     </div>
 
-    <!-- ✏️ Lien GitHub — remplace l'URL -->
     <a href="https://github.com/InesAjd92/social-media-vs-traditional-media" target="_blank" class="gh-btn">
-      ↗ Voir le code sur GitHub
+      Voir le code sur GitHub
     </a>
   </div>
 
   <div class="divider"></div>
 
-  <!-- KPIs principaux -->
-  <!-- ✏️ Modifie les valeurs et labels -->
   <div class="kpi-row">
-    <div class="kpi"><div class="kv">−52%</div><div class="kl">TV 15-34 ans<br>2013 → 2023</div></div>
-    <div class="kpi"><div class="kv">r = .78</div><div class="kl">Corrélation Pearson<br>p &lt; 0.01</div></div>
-    <div class="kpi"><div class="kv">4h/jour</div><div class="kl">Fossé générationnel<br>50+ vs 15-34 en 2023</div></div>
+    <div class="kpi"><div class="kv">-52%</div><div class="kl">TV 15-34 ans<br>2013 à 2023</div></div>
+    <div class="kpi"><div class="kv">r = .865</div><div class="kl">Corrélation de Pearson<br>p &lt; 0.001</div></div>
+    <div class="kpi"><div class="kv">4h/jour</div><div class="kl">Fossé générationnel<br>50 ans+ vs 15-34 en 2023</div></div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- ✏️ CONTEXTE — explique pourquoi tu as fait ce projet -->
+  <!-- GRAPHIQUE : indices base 100 = 2013 -->
+  <h2>Le signal <em>en données</em></h2>
+  <p>
+    Évolution relative des deux séries depuis 2013, base 100. Ce format permet de comparer
+    directement les vitesses de changement indépendamment des unités : pendant que le temps
+    passé sur les réseaux sociaux progressait de 28,8%, la durée de visionnage TV des 15-34 ans
+    s'effondrait de 52,3%.
+  </p>
+
+  <div style="background:var(--s1);border:1px solid var(--border);border-radius:12px;padding:28px 28px 16px;overflow:hidden">
+    <svg viewBox="0 0 860 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;font-family:'JetBrains Mono',monospace">
+      <defs>
+        <linearGradient id="gSoc" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#58a6ff" stop-opacity="0.15"/>
+          <stop offset="100%" stop-color="#58a6ff" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="gTV" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ff7b72" stop-opacity="0.12"/>
+          <stop offset="100%" stop-color="#ff7b72" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <!-- Grille horizontale : val 40/60/80/100/120/140 | y = 290-(val-40)*2.7 -->
+      <line x1="60" y1="290" x2="820" y2="290" stroke="#21262d" stroke-width="1"/>
+      <line x1="60" y1="236" x2="820" y2="236" stroke="#21262d" stroke-width="0.7"/>
+      <line x1="60" y1="182" x2="820" y2="182" stroke="#21262d" stroke-width="0.7"/>
+      <line x1="60" y1="128" x2="820" y2="128" stroke="#21262d" stroke-width="0.7"/>
+      <line x1="60" y1="74"  x2="820" y2="74"  stroke="#21262d" stroke-width="0.7"/>
+      <line x1="60" y1="20"  x2="820" y2="20"  stroke="#21262d" stroke-width="0.7"/>
+      <!-- Ligne base 100 mise en valeur -->
+      <line x1="60" y1="128" x2="820" y2="128" stroke="#435060" stroke-width="1" stroke-dasharray="4 3"/>
+      <text x="826" y="132" fill="#435060" font-size="9">100</text>
+      <!-- Labels axe Y -->
+      <text x="48" y="294" fill="#435060" font-size="9" text-anchor="end">40</text>
+      <text x="48" y="240" fill="#435060" font-size="9" text-anchor="end">60</text>
+      <text x="48" y="186" fill="#435060" font-size="9" text-anchor="end">80</text>
+      <text x="48" y="132" fill="#435060" font-size="9" text-anchor="end">100</text>
+      <text x="48" y="78"  fill="#435060" font-size="9" text-anchor="end">120</text>
+      <text x="48" y="24"  fill="#435060" font-size="9" text-anchor="end">140</text>
+      <!-- Aires -->
+      <polygon points="60,128.0 136,115.8 212,101.3 288,69.7 364,52.7 440,47.8 516,45.4 592,40.5 668,40.5 744,50.2 820,50.2 820,290 60,290" fill="url(#gSoc)"/>
+      <polygon points="60,128.0 136,140.1 212,154.2 288,166.3 364,169.8 440,196.0 516,218.4 592,197.7 668,227.4 744,253.6 820,269.2 820,290 60,290" fill="url(#gTV)"/>
+      <!-- TV 15-49 comparaison -->
+      <polyline points="60,128.0 136,139.3 212,140.7 288,142.0 364,152.0 440,169.0 516,186.1 592,163.4 668,193.1 744,219.8 820,235.5" fill="none" stroke="#f0a070" stroke-width="1.4" stroke-dasharray="4 3" opacity="0.55"/>
+      <!-- Réseaux sociaux -->
+      <polyline points="60,128.0 136,115.8 212,101.3 288,69.7 364,52.7 440,47.8 516,45.4 592,40.5 668,40.5 744,50.2 820,50.2" fill="none" stroke="#58a6ff" stroke-width="2.5"/>
+      <!-- TV 15-34 -->
+      <polyline points="60,128.0 136,140.1 212,154.2 288,166.3 364,169.8 440,196.0 516,218.4 592,197.7 668,227.4 744,253.6 820,269.2" fill="none" stroke="#ff7b72" stroke-width="2.5" stroke-dasharray="6 3"/>
+      <!-- Points réseaux sociaux -->
+      <circle cx="60"  cy="128.0" r="3.5" fill="#58a6ff"/>
+      <circle cx="136" cy="115.8" r="3.5" fill="#58a6ff"/>
+      <circle cx="212" cy="101.3" r="3.5" fill="#58a6ff"/>
+      <circle cx="288" cy="69.7"  r="3.5" fill="#58a6ff"/>
+      <circle cx="364" cy="52.7"  r="3.5" fill="#58a6ff"/>
+      <circle cx="440" cy="47.8"  r="3.5" fill="#58a6ff"/>
+      <circle cx="516" cy="45.4"  r="3.5" fill="#58a6ff"/>
+      <circle cx="592" cy="40.5"  r="3.5" fill="#58a6ff"/>
+      <circle cx="668" cy="40.5"  r="3.5" fill="#58a6ff"/>
+      <circle cx="744" cy="50.2"  r="3.5" fill="#58a6ff"/>
+      <circle cx="820" cy="50.2"  r="3.5" fill="#58a6ff"/>
+      <!-- Points TV 15-34 -->
+      <circle cx="60"  cy="128.0" r="3.5" fill="#ff7b72"/>
+      <circle cx="136" cy="140.1" r="3.5" fill="#ff7b72"/>
+      <circle cx="212" cy="154.2" r="3.5" fill="#ff7b72"/>
+      <circle cx="288" cy="166.3" r="3.5" fill="#ff7b72"/>
+      <circle cx="364" cy="169.8" r="3.5" fill="#ff7b72"/>
+      <circle cx="440" cy="196.0" r="3.5" fill="#ff7b72"/>
+      <circle cx="516" cy="218.4" r="3.5" fill="#ff7b72"/>
+      <circle cx="592" cy="197.7" r="3.5" fill="#ff7b72"/>
+      <circle cx="668" cy="227.4" r="3.5" fill="#ff7b72"/>
+      <circle cx="744" cy="253.6" r="3.5" fill="#ff7b72"/>
+      <circle cx="820" cy="269.2" r="3.5" fill="#ff7b72"/>
+      <!-- Labels années -->
+      <text x="60"  y="310" fill="#435060" font-size="9" text-anchor="middle">2013</text>
+      <text x="136" y="310" fill="#435060" font-size="9" text-anchor="middle">2014</text>
+      <text x="212" y="310" fill="#435060" font-size="9" text-anchor="middle">2015</text>
+      <text x="288" y="310" fill="#435060" font-size="9" text-anchor="middle">2016</text>
+      <text x="364" y="310" fill="#435060" font-size="9" text-anchor="middle">2017</text>
+      <text x="440" y="310" fill="#435060" font-size="9" text-anchor="middle">2018</text>
+      <text x="516" y="310" fill="#435060" font-size="9" text-anchor="middle">2019</text>
+      <text x="592" y="310" fill="#435060" font-size="9" text-anchor="middle">2020</text>
+      <text x="668" y="310" fill="#435060" font-size="9" text-anchor="middle">2021</text>
+      <text x="744" y="310" fill="#435060" font-size="9" text-anchor="middle">2022</text>
+      <text x="820" y="310" fill="#435060" font-size="9" text-anchor="middle">2023</text>
+      <!-- Annotations finales 2023 -->
+      <text x="828" y="54"  fill="#58a6ff" font-size="10" font-weight="bold">+28,8%</text>
+      <text x="828" y="273" fill="#ff7b72" font-size="10" font-weight="bold">-52,3%</text>
+      <text x="828" y="239" fill="#f0a070" font-size="9" opacity="0.65">-39,8%</text>
+      <!-- COVID -->
+      <line x1="592" y1="28" x2="592" y2="284" stroke="#f78166" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.5"/>
+      <text x="596" y="38" fill="#f78166" font-size="9" opacity="0.8">COVID</text>
+      <!-- Légende -->
+      <line x1="60" y1="336" x2="74" y2="336" stroke="#58a6ff" stroke-width="2.5"/>
+      <circle cx="67" cy="336" r="3" fill="#58a6ff"/>
+      <text x="80" y="340" fill="#8b949e" font-size="9">Temps réseaux sociaux (GWI mondial, min/jour)</text>
+      <line x1="310" y1="336" x2="324" y2="336" stroke="#ff7b72" stroke-width="2.5" stroke-dasharray="5 2"/>
+      <circle cx="317" cy="336" r="3" fill="#ff7b72"/>
+      <text x="330" y="340" fill="#8b949e" font-size="9">TV 15-34 ans : tranche principale</text>
+      <line x1="560" y1="336" x2="574" y2="336" stroke="#f0a070" stroke-width="1.4" stroke-dasharray="4 3" opacity="0.6"/>
+      <text x="580" y="340" fill="#8b949e" font-size="9" opacity="0.65">TV 15-49 ans : CNC</text>
+    </svg>
+  </div>
+  <p style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.05em;margin-top:10px;margin-bottom:0">
+    Indices base 100 = 2013. Sources : GWI via DataReportal (réseaux sociaux) · CNC Chiffres clés 2024 + Médiamat 2018 (TV 15-34) · CNC (TV 15-49). 2024 non représenté : rupture méthodologique Médiamétrie documentée.
+  </p>
+
+  <div class="divider"></div>
+
   <h2>Contexte &amp; <em>problématique</em></h2>
   <p>
-    La consommation médias se fragmente à grande vitesse. Depuis dix ans, les jeunes adultes
-    délaissent la télévision au profit des plateformes numériques et des réseaux sociaux.
-    Mais dans quelle mesure ces deux tendances sont-elles liées ?
+    Depuis le milieu des années 2010, deux tendances se dessinent clairement dans les données médias françaises :
+    le temps passé sur les réseaux sociaux progresse de façon continue, pendant que la durée de visionnage TV des
+    jeunes adultes s'effondre à un rythme sans précédent.
+    Ce projet cherche à qualifier et quantifier cette relation sur dix ans de données empiriques.
   </p>
   <p>
     <strong>Problématique :</strong> Dans quelle mesure la montée en puissance des réseaux sociaux
     numériques est-elle associée au déclin structurel de la TV
-    chez les jeunes adultes (15-34 ans) en France, sur la période 2013–2023 ?
+    chez les jeunes adultes (15-34 ans) en France, sur la période 2013-2023 ?
   </p>
 
   <div class="divider"></div>
 
-  <!-- ✏️ HYPOTHÈSES — présente tes H1/H2/H3 -->
   <h2>Hypothèses <em>testées</em></h2>
   <div class="hypo-grid">
     <div class="hypo">
-      <div class="hypo-label">H1 — Corrélation principale</div>
+      <div class="hypo-label">H1 : Substitution directe</div>
       <div class="hypo-text">La progression du temps passé sur les réseaux sociaux est corrélée négativement avec la durée d'écoute TV chez les 15-34 ans.</div>
-      <div class="hypo-result">✅ Confirmée — r = −0.78, p &lt; 0.01</div>
+      <div class="hypo-result">Confirmée : r = -0,865, p &lt; 0,001</div>
     </div>
     <div class="hypo">
-      <div class="hypo-label">H2 — Rôle médiateur des plateformes</div>
-      <div class="hypo-text">Le streaming joue un rôle médiateur : TikTok explose exactement au moment où la chute TV est la plus prononcée (2018-2021).</div>
-      <div class="hypo-result">✅ Confirmée — TikTok +1.7B MAU en 3 ans</div>
+      <div class="hypo-label">H2 : Concomitance plateformes et chute TV</div>
+      <div class="hypo-text">L'explosion des plateformes sociales courtes (TikTok, Instagram Reels) coïncide temporellement avec la période de chute TV la plus prononcée chez les 15-34 ans, ce qui suggère un effet de substitution directe de l'attention.</div>
+      <div class="hypo-result">Confirmée : TikTok +1,7 milliard MAU en 3 ans (2018-2021)</div>
     </div>
     <div class="hypo">
-      <div class="hypo-label">H3 — Fracture générationnelle</div>
+      <div class="hypo-label">H3 : Fracture générationnelle</div>
       <div class="hypo-text">Le fossé entre 50 ans+ et 15-34 ans se creuse chaque année de façon statistiquement significative.</div>
-      <div class="hypo-result">✅ Confirmée — 147 → 242 min/jour (+65%), p &lt; 0.001</div>
+      <div class="hypo-result">Confirmée : 147 à 242 min/jour (+65%), p &lt; 0,001</div>
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- ✏️ RÉSULTATS CLÉS -->
   <h2>Résultats <em>clés</em></h2>
   <div class="result-list">
-    <div class="result-item">Les 15-34 ans regardent 52% moins la TV en 2023 qu'en 2013 (155 → 74 min/jour), contre seulement 40% pour la tranche 15-49 ans - montrant l'effet de dilution de l'agrégation large.</div>
-    <div class="result-item">La corrélation de Pearson entre temps réseaux sociaux et durée TV 15-34 ans est de r = −0.78 (p &lt; 0.01), plus forte qu'avec la tranche 15-49 (r = −0.67).</div>
-    <div class="result-item">L'écart générationnel (50ans+ vs 15-34ans) est passé de 147 à 242 min/jour (+65%) - soit 4 heures de différence quotidienne en 2023.</div>
-    <div class="result-item">2024 : rupture méthodologique Médiamétrie (nouvelle mesure tous foyers/tous écrans) - les données ne sont pas comparables à la série historique.</div>
+    <div class="result-item">La corrélation de Pearson entre le temps passé sur les réseaux sociaux et la durée de visionnage TV des 15-34 ans atteint r = -0,865 (p = 0,0006). Elle explique 74,8% de la variance de la série TV sur la période 2013-2023. Ce résultat est plus fort qu'avec la tranche 15-49 (r = -0,781), ce qui confirme que l'agrégation large dilue le signal : inclure les 35-49 ans, qui regardent encore davantage la TV, masque la réalité des jeunes adultes.</div>
+    <div class="result-item">En dix ans, la durée de visionnage TV des 15-34 ans est passée de 155 à 74 minutes par jour, soit une baisse de 52%. La chute s'accélère à partir de 2018, période qui coïncide exactement avec l'explosion de TikTok (+1,7 milliard d'utilisateurs actifs mensuels entre 2018 et 2021).</div>
+    <div class="result-item">L'écart de temps de visionnage TV entre les 50 ans+ et les 15-34 ans est passé de 147 à 242 minutes par jour entre 2013 et 2023, soit une progression de 65%. La régression linéaire sur cet écart donne une pente de +10,7 min/an (p &lt; 0,001), confirmant que la fracture générationnelle n'est pas conjoncturelle mais structurelle.</div>
+    <div class="result-item">En 2020, le confinement provoque un rebond temporaire du visionnage TV chez les 15-34 ans (+17 min/jour). La tendance longue reprend dès 2021, plus prononcée qu'avant. Cette anomalie est contrôlée dans les tests de robustesse : la corrélation sans 2020 reste significative (r = -0,856, p &lt; 0,001).</div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- ✏️ PIPELINE / MÉTHODE — décris ce que tu as fait techniquement -->
   <h2>Pipeline <em>technique</em></h2>
   <p>
-    <strong>Collecte :</strong> Scripts Python de scraping (Our World in Data, GWI via DataReportal),
-    consolidation manuelle des données CNC/Médiamétrie depuis les fichiers Excel officiels
-    et rapports annuels.
+    <strong>Collecte :</strong> scripts Python de scraping (Our World in Data, GWI via DataReportal), consolidation manuelle depuis les fichiers Excel officiels CNC et les rapports Médiamat annuels. Six ruptures méthodologiques Médiamétrie entre 2011 et 2024 sont identifiées et documentées.
   </p>
   <p>
-    <strong>Nettoyage :</strong> Traitement des ruptures méthodologiques Médiamétrie (6 ruptures
-    entre 2011 et 2024), annotation des NaN documentés, construction de séries comparables,
-    indices base 100.
+    <strong>Nettoyage :</strong> construction de séries comparables, annotation des NaN documentés, indices base 100, jointure multi-sources sur la tranche 15-34 ans (reconstruction depuis CNC Chiffres clés 2024 Tableau 2 et Médiamat 2018).
   </p>
   <p>
-    <strong>EDA :</strong> Corrélation de Pearson, régression OLS, analyse de tendances,
-    comparaison internationale, visualisations Matplotlib/Seaborn avec style sombre personnalisé.
+    <strong>EDA :</strong> corrélation de Pearson, régression OLS, analyse de tendances (régression linéaire sur l'écart générationnel), test de robustesse hors COVID. Sept visualisations produites avec Matplotlib/Seaborn.
   </p>
 
-  <!-- Navigation entre projets -->
+  <div class="divider"></div>
+
+  <!-- NOTE MÉTHODOLOGIQUE -->
+  <div style="background:var(--s1);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:0 8px 8px 0;padding:18px 22px">
+    <div style="font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:12px">Note méthodologique</div>
+    <p>
+      <strong>Tranche d'âge principale : 15-34 ans</strong> (reconstruction multi-sources CNC + Médiamat),
+      et non 15-49 ans (série officielle CNC). La différence de corrélation entre les deux tranches
+      (r = -0,865 vs r = -0,781, soit &#916;r = 0,084) illustre concrètement l'effet de dilution
+      de l'agrégation large : les 35-49 ans, qui regardent encore davantage la TV, tirent la moyenne vers le haut
+      et atténuent le signal réel chez les jeunes adultes.
+    </p>
+    <p>
+      <strong>2024 = NaN documenté.</strong> Médiamétrie a adopté une nouvelle méthodologie au 1er janvier 2024
+      (tous foyers, tous lieux, tous écrans : population mesurée élargie de 57,3 à 62,6 millions de personnes).
+      Les données 2024 ne sont pas comparables à la série historique 2009-2023 et sont encodées comme valeurs
+      manquantes dans l'ensemble des datasets. À surveiller dans les prochains rapports CNC.
+    </p>
+    <p style="margin-bottom:0">
+      <strong>Corrélation et causalité.</strong> Les résultats établissent une corrélation forte et
+      statistiquement significative, non une causalité. Des variables confondantes peuvent jouer un rôle :
+      développement de l'offre SVOD, taux d'équipement, structure socio-démographique, effets générationnels de long terme.
+    </p>
+  </div>
+
+
   <div class="proj-nav">
     <a href="index.html#projets" class="pnav-link">
-      <div class="pnav-dir">← Tous les projets</div>
+      <div class="pnav-dir">Tous les projets</div>
       <div class="pnav-title">Retour à l'accueil</div>
     </a>
     <a href="projet-hacker-news.html" class="pnav-link" style="text-align:right">
-      <div class="pnav-dir">Projet suivant →</div>
-      <div class="pnav-title">Hacker News — EDA</div>
+      <div class="pnav-dir">Projet suivant</div>
+      <div class="pnav-title">Hacker News : EDA</div>
     </a>
   </div>
 
