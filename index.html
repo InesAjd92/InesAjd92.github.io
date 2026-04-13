@@ -6,27 +6,9 @@
 <title>Inès Amdjahed - Data Analyst</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   COMMENT MODIFIER CE FICHIER — GUIDE RAPIDE
-   ============================================================
-
-   1. TEXTE : cherche la section avec les commentaires
-      <!-- ✏️ MODIFIE ICI --> et change le texte entre les balises.
-
-   2. COULEURS : change les variables en haut du fichier CSS
-      (section :root). Ex : --cyan:#00D4FF → --cyan:#FF6B6B
-
-   3. TA PHOTO : remplace "photo.jpg" par le nom de ton fichier image.
-      Place l'image dans le même dossier que index.html.
-
-   4. LIENS : cherche href="..." et remplace par tes vraies URLs.
-
-   5. AJOUTER UN PROJET : duplique un bloc <a class="pcard">
-      et modifie le texte à l'intérieur.
-   ============================================================ */
 
 :root {
-  /* — Couleurs principales — */
+  /* : Couleurs principales : */
   --bg:     #080B0F;   /* fond général (très sombre) */
   --s1:     #0D1117;   /* surface des cartes */
   --s2:     #131920;   /* surface secondaire */
@@ -34,7 +16,7 @@
   --border: #1E2A38;   /* bordures */
   --border2:#28394A;   /* bordures au survol */
 
-  /* — Couleurs d'accent — */
+  /* : Couleurs d'accent : */
   --cyan:   #00D4FF;              /* couleur principale */
   --cyan-d: rgba(0,212,255,.08);  /* fond cyan transparent */
   --cyan-m: rgba(0,212,255,.35);  /* cyan moyen */
@@ -45,12 +27,12 @@
   --blue:   #5B9CF6;              /* bleu (R / NLP) */
   --blue-d: rgba(91,156,246,.1);
 
-  /* — Texte — */
+  /* : Texte : */
   --ink:    #E4EDF5;   /* texte principal */
   --mid:    #7A8FA0;   /* texte secondaire */
   --muted:  #435060;   /* texte discret */
 
-  /* — Typographies — */
+  /* : Typographies : */
   --mono:  'JetBrains Mono', monospace;  /* chiffres, tags, labels */
   --serif: 'Playfair Display', serif;    /* titres */
   --sans:  'DM Sans', sans-serif;        /* corps de texte */
@@ -96,7 +78,7 @@ nav {
   border-bottom:1px solid var(--border);
 }
 
-/* ✏️ Le logo/nom dans la nav */
+/* Le logo/nom dans la nav */
 .nav-logo {
   font-family:var(--serif);
   font-style:italic;
@@ -189,8 +171,8 @@ h1 {
 }
 h1 em { font-style:italic; color:var(--cyan); text-shadow:0 0 40px rgba(0,212,255,.22) }
 
-/* ✏️ PHOTO — remplace "photo.jpg" par ton fichier image.
-   Place le fichier dans le même dossier que index.html.
+/* PHOTO : remplace "photo.jpg" par le fichier image.
+   Placer le fichier dans le même dossier que index.html.
    La photo s'affiche en cercle 120x120px à côté du titre. */
 .hero-photo {
   width:110px; height:110px;
@@ -204,7 +186,7 @@ h1 em { font-style:italic; color:var(--cyan); text-shadow:0 0 40px rgba(0,212,25
 }
 .hero-photo:hover { border-color:var(--cyan) }
 
-/* Si pas encore de photo, affiche un placeholder */
+/* Si pas encore de photo, afficher un placeholder */
 .hero-photo-placeholder {
   width:110px; height:110px;
   border-radius:50%;
@@ -224,7 +206,7 @@ h1 em { font-style:italic; color:var(--cyan); text-shadow:0 0 40px rgba(0,212,25
   color:var(--muted); margin-bottom:32px;
 }
 
-/* ✏️ PHRASE D'INTRO — modifie le texte dans la balise <p class="hero-desc"> */
+/* PHRASE D'INTRO : <p class="hero-desc"> */
 .hero-desc {
   font-size:15.5px; color:var(--mid);
   max-width:500px; line-height:1.9;
@@ -308,7 +290,7 @@ h1 em { font-style:italic; color:var(--cyan); text-shadow:0 0 40px rgba(0,212,25
   white-space:nowrap; background:var(--s2); padding:2px 5px; border-radius:2px; pointer-events:none;
 }
 .bar.c { background:var(--cyan); opacity:.65 } .bar.c:hover { opacity:1 }
-.bar.g { background:var(--s3) }
+.bar.g { background:#f78166; opacity:.45 }
 .years { display:flex; gap:4px; margin-top:5px }
 .yr { flex:1; font-family:var(--mono); font-size:7.5px; color:var(--muted); text-align:center }
 
@@ -327,7 +309,7 @@ h1 em { font-style:italic; color:var(--cyan); text-shadow:0 0 40px rgba(0,212,25
 .stxt strong { color:var(--teal) }
 
 /* ============================================================
-   SECTIONS — BASE
+   SECTIONS : BASE
    ============================================================ */
 .wrap { max-width:1260px; margin:0 auto; padding:92px 72px; position:relative; z-index:1 }
 
@@ -373,8 +355,10 @@ h2 em { font-style:italic; color:var(--cyan) }
 .ptitle { font-family:var(--serif); font-size:1.7rem; font-weight:400; line-height:1.2; margin-bottom:14px }
 .pdesc { font-size:13.5px; color:var(--mid); line-height:1.8; max-width:440px; margin-bottom:26px }
 .chips { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:26px }
-.chip { font-family:var(--mono); font-size:10px; letter-spacing:.05em; padding:4px 10px; border-radius:4px; background:var(--s2); color:var(--muted); border:1px solid var(--border) }
+.chip { font-family:var(--mono); font-size:10px; letter-spacing:.05em; padding:4px 10px; border-radius:4px; background:var(--s2); color:#8BA8C0; border:1px solid var(--border) }
 .chip-a { background:var(--cyan-d); color:var(--cyan); border-color:rgba(0,212,255,.2) }
+.chip-b { background:var(--blue-d); color:var(--blue); border-color:rgba(91,156,246,.2) }
+.chip-t { background:var(--teal-d); color:var(--teal); border-color:rgba(0,184,160,.2) }
 .pcta {
   display:inline-flex; align-items:center; gap:8px;
   font-family:var(--mono); font-size:10px; font-weight:700;
@@ -508,21 +492,20 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
 
 <!-- ============================================================
      NAV
-     ✏️ Pour modifier : change le texte entre les balises.
      ============================================================ -->
 <nav>
-  <!-- ✏️ Ton nom dans la nav -->
+  <!-- Nom dans la nav -->
   <a href="index.html" class="nav-logo"><em>Inès Amdjahed</em><span> ·</span></a>
 
   <ul class="nav-ul">
-    <!-- ✏️ Les liens de navigation — href="#projets" = ancre sur cette page -->
+    <!-- Les liens de navigation : href="#projets" = ancre sur cette page -->
     <li><a href="#projets">Projets</a></li>
     <li><a href="#competences">Stack</a></li>
     <li><a href="#parcours">Parcours</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 
-  <!-- ✏️ Le bouton CTA — remplace l'adresse email -->
+  <!-- Le bouton CTA  -->
   <a href="mailto:amdjahedines@gmail.com" class="nav-cta">Me contacter</a>
 </nav>
 
@@ -535,38 +518,37 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
   <!-- Colonne gauche : nom + intro + stack -->
   <div class="hero-left">
 
-    <!-- ✏️ Badge de disponibilité — modifie le texte si besoin -->
+    <!-- Badge de disponibilité  -->
     <div class="badge au d1">
       <span class="bdot"></span>
-      Disponible · Data Analyst Médias &amp; Audiences
+     Ouverte aux opportunités · Data Analyst
     </div>
 
     <!-- Bloc nom + photo côte à côte -->
     <div class="hero-name-row au d2">
       <h1>Inès<br><em>Amdjahed</em></h1>
 
-      <!-- ✏️ PHOTO — 3 options :
-           Option A (avec photo) : décommente la ligne <img> ci-dessous
-             et remplace "photo.jpg" par ton fichier.
-             Place le fichier image dans le même dossier que index.html.
+      <!-- PHOTO : 3 options :
+           Option A (avec photo) : décommenter la ligne <img> ci-dessous
+             et remplacer "photo.jpg" par le fichier.
+             Placer le fichier image dans le même dossier que index.html.
 
-           Option B (sans photo pour l'instant) : laisse le placeholder.
+           Option B  : laisser le placeholder.
 
-           Option C (supprimer) : efface tout le bloc hero-photo-placeholder.
+           Option C (supprimer) : effacer tout le bloc hero-photo-placeholder.
       -->
 
       <img src="ines.jpeg" alt="Inès Amdjahed" class="hero-photo">
 
-      <!-- Option B — placeholder temporaire (supprime quand tu mets la vraie photo) -->
+      <!-- Option B : placeholder temporaire -->
       <!-- <div class="hero-photo-placeholder">ta<br>photo<br>ici</div> -->
 
     </div>
 
-    <!-- ✏️ Sous-titre / rôle -->
-    <div class="hero-role au d3">Data Analyst · Médias & Audiences · Disponible immédiatement </div>
+    <!-- Sous-titre / rôle -->
+    <div class="hero-role au d3">→ Data Analyst · Sciences sociales &amp; médias · Paris</div>
 
-    <!-- ✏️ PHRASE D'INTRO — c'est ici que tu te présentes.
-         Modifie librement le texte. Utilise <strong> pour mettre en gras
+    <!--  PHRASE D'INTRO : <strong> pour mettre en gras
          et <em> pour colorer en cyan. -->
      <p class="hero-desc au d3">
   Analyste data avec un pied dans les <strong>sciences humaines</strong>
@@ -580,13 +562,13 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
   qui aident à comprendre et décider</em>.
 </p>
 
-    <!-- ✏️ Boutons d'action — remplace les href par tes vraies URLs -->
+    <!--  Boutons d'action  -->
     <div class="actions au d4">
       <a href="https://github.com/InesAjd92" target="_blank" class="btn-p">↗ Voir mes projets</a>
       <a href="#contact" class="btn-g">Contact</a>
     </div>
 
-    <!-- ✏️ STACK — ajoute / supprime des pills selon tes compétences.
+    <!-- STACK : ajoute / supprime des pills selon mes compétences.
          Classes disponibles :
            p-c = cyan (Python, SQL, Power BI...)
            p-b = bleu (R, NLP...)
@@ -615,18 +597,18 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
   <!-- Colonne droite : dashboard KPIs -->
   <div class="hero-right">
 
-    <!-- ✏️ Label du panel -->
+    <!--  Label du panel -->
     <div class="plbl">// Projet phare · résultats</div>
 
-    <!-- ✏️ KPIs — modifie les valeurs (.kv) et les labels (.kl) -->
+    <!-- KPIs : valeurs (.kv) et les labels (.kl) -->
     <div class="kpi-grid">
       <div class="kpi">
         <div class="kv">−52%</div>
-        <div class="kl">TV 15-34 ans<br>2013 → 2023</div>
+        <div class="kl">TV 15-34 ans<br>2013 à 2023</div>
       </div>
       <div class="kpi">
-        <div class="kv">r=.78</div>
-        <div class="kl">Pearson H1<br>p &lt; 0.01</div>
+        <div class="kv">r=.865</div>
+        <div class="kl">Pearson H1<br>p &lt; 0.001</div>
       </div>
       <div class="kpi">
         <div class="kv">+4h</div>
@@ -638,8 +620,8 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
       </div>
     </div>
 
-    <!-- Mini graphique en barres — données TV 15-34 ans 2013-2023 -->
-    <!-- ✏️ Pour modifier une barre : change la valeur height (en px)
+    <!-- Mini graphique en barres : données TV 15-34 ans 2013-2023 -->
+    <!-- Pour modifier une barre : changer la valeur height (en px)
          et data-v (tooltip au survol). Classe "c" = cyan, "g" = gris (COVID) -->
     <div class="spark">
       <div class="spark-h">
@@ -653,7 +635,7 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
         <div class="bar c" style="height:43px" data-v="131 min (2017)"></div>
         <div class="bar c" style="height:38px" data-v="116 min (2018)"></div>
         <div class="bar c" style="height:33px" data-v="103 min (2019)"></div>
-        <div class="bar g" style="height:37px" data-v="115 min (2020 — COVID)"></div>
+        <div class="bar g" style="height:37px" data-v="115 min (2020 : COVID)"></div>
         <div class="bar c" style="height:31px" data-v="98 min (2021)"></div>
         <div class="bar c" style="height:26px" data-v="83 min (2022)"></div>
         <div class="bar c" style="height:23px" data-v="74 min (2023)"></div>
@@ -666,12 +648,12 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
       </div>
     </div>
 
-    <!-- ✏️ Status — modifie le texte de disponibilité -->
+    <!-- Status -->
     <div class="status">
       <div class="sdot"></div>
       <div class="stxt">
         <strong>Ouverte aux opportunités</strong><br>
-        Médias · Études · Agence data — Paris &amp; remote
+        Médias · Études · Agence data : Paris &amp; remote
       </div>
     </div>
 
@@ -681,9 +663,7 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
 
 <!-- ============================================================
      PROJETS
-     ✏️ Pour ajouter un projet : duplique un bloc <a class="pcard">
-        et modifie le texte. Pour lier vers une page projet :
-        change href="projet-social-media.html" par ton fichier.
+     Pour ajouter un projet : dupliquer un bloc <a class="pcard">
      ============================================================ -->
 <section id="projets">
   <div class="wrap">
@@ -693,20 +673,20 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
       <div class="sec-line"></div>
     </div>
 
-    <!-- Projet featured — lien vers la page dédiée -->
-    <!-- ✏️ href="..." → remplace par le nom de ta page HTML projet -->
+    <!-- Projet featured : lien vers la page dédiée -->
+    <!-- href="..." → remplacer par le nom de ta page HTML projet -->
     <a href="projet-social-media.html" class="pfeat reveal">
       <div class="pfl">
-        <div class="pf-ey">Projet principal · 2024-2025</div>
-        <!-- ✏️ Titre du projet -->
-        <h3 class="ptitle">Social media vs Traditional Media</h3>
-        <!-- ✏️ Description courte -->
+        <div class="pf-ey">Projet récent · 2026</div>
+        <!-- Titre du projet -->
+        <h3 class="ptitle">Réseaux sociaux &amp; effondrement de la TV chez les 15-34 ans</h3>
+        <!-- Description courte -->
         <p class="pdesc">
           Analyse de la corrélation entre la montée des réseaux sociaux
           et le déclin de la TV chez les 15-34 ans en France, de 2013 à 2023. Collecte, nettoyage,
-          EDA - 3 hypothèses testées et confirmées.
+          EDA & 3 hypothèses testées.
         </p>
-        <!-- ✏️ Technologies utilisées — ajoute/supprime des <span class="chip"> -->
+        <!-- Technologies utilisées -->
         <div class="chips">
           <span class="chip chip-a">Python</span>
           <span class="chip chip-a">Pandas</span>
@@ -717,12 +697,12 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
         </div>
         <div class="pcta">Voir le projet ↗</div>
       </div>
-      <!-- ✏️ Métriques clés du projet — modifie .mval et .mlbl -->
+      <!-- Métriques clés du projet : modifie .mval et .mlbl -->
       <div class="pfr">
         <div class="plbl">// Résultats</div>
-        <div><div class="mval">−52%</div><div class="mlbl">TV 15-34 ans · 2013 → 2023</div></div>
+        <div><div class="mval">−52%</div><div class="mlbl">TV 15-34 ans · 2013 à 2023</div></div>
         <div class="msep"></div>
-        <div><div class="mval">r = .78</div><div class="mlbl">Corrélation Pearson H1 · p &lt; 0.01</div></div>
+        <div><div class="mval">r = .865</div><div class="mlbl">Corrélation Pearson H1 · p &lt; 0.001</div></div>
         <div class="msep"></div>
         <div><div class="mval">4h/j</div><div class="mlbl">Fossé 50ans+ vs 15-34 en 2023</div></div>
       </div>
@@ -731,37 +711,37 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
     <!-- Grille des autres projets -->
     <div class="pgrid">
 
-      <!-- ✏️ Projet 2 -->
+      <!-- Projet 2 -->
       <a href="projet-hacker-news.html" class="pcard reveal">
         <div class="pnum">// 02</div>
         <div class="pch">
-          <h3 class="pctitle">Hacker News — EDA</h3>
+          <h3 class="pctitle">Hacker News : EDA</h3>
           <span class="parr">↗</span>
         </div>
-        <p class="pcdesc">300k+ posts · patterns temporels, corrélations votes/commentaires, catégories les plus engageantes.</p>
+        <p class="pcdesc"> Analyse de 300k+ posts pour détecter des patterns temporels, corrélations votes/commentaires, catégories les plus engageantes.</p>
         <div class="chips">
           <span class="chip chip-a">Python</span>
-          <span class="chip">Pandas</span>
-          <span class="chip">Seaborn</span>
+          <span class="chip chip-a">Pandas</span>
+          <span class="chip chip-a">Seaborn</span>
         </div>
       </a>
 
-      <!-- ✏️ Projet 3 -->
+      <!-- Projet 3 -->
       <a href="projet-memoire.html" class="pcard reveal">
         <div class="pnum">// 03</div>
         <div class="pch">
           <h3 class="pctitle">Rhétorique conspirationniste - Mémoire de recherche</h3>
           <span class="parr">↗</span>
         </div>
-        <p class="pcdesc">Analyse textométrique · Affaire Chinese Balloons · IRaMuTeQ, sentiment analysis, cartographie lexicale.</p>
+        <p class="pcdesc">Analyse textométrique de l'affaire "Chinese Balloons" · IRaMuTeQ, sentiment analysis, cartographie lexicale.</p>
         <div class="chips">
-          <span class="chip p-b">R</span>
-          <span class="chip">IRaMuTeQ</span>
-          <span class="chip">sentimentr</span>
+          <span class="chip p-b">R</span>          
+          <span class="chip chip-b">IRaMuTeQ</span>
+          <span class="chip chip-b">sentimentr</span>
         </div>
       </a>
 
-      <!-- ✏️ Projet 4 
+      <!-- Projet 4 
       <a href="projet-audiences-tv.html" class="pcard reveal">
         <div class="pnum">// 04</div>
         <div class="pch">
@@ -776,36 +756,36 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
         </div>
       </a> -->
 
-        <!-- ✏️ Projet 5 -->
+        <!-- Projet 5 -->
       <a href="projet-conspiracy.html" class="pcard reveal">
-        <div class="pnum">// 05</div>
+        <div class="pnum">// 04</div>
         <div class="pch">
           <h3 class="pctitle"> Prédictions des profils conspirationnistes </h3>
           <span class="parr">↗</span>
         </div>
-        <p class="pcdesc"> Data Science · données OpenPsychometrics · R, ACP / MCA </p>
+        <p class="pcdesc"> Projet de data science · données OpenPsychometrics · R, ACP / MCA </p>
         <div class="chips">
-          <span class="chip">R</span>
-          <span class="chip">OpenPsychometrics</span>
-          <span class="chip">Data science</span>
+          <span class="chip chip-b">R</span>
+          <span class="chip chip-t">OpenPsychometrics</span>
+          <span class="chip chip-a">Data science</span>
         </div>
       </a>
 
-        <!-- ✏️ Projet 6 -->
+        <!-- Projet 6 -->
       <a href="projet-ina-mip.html" class="pcard reveal">
-        <div class="pnum">// 06</div>
+        <div class="pnum">// 05</div>
         <div class="pch">
           <h3 class="pctitle">Représentations médiatiques &amp; OVNIs</h3>
           <span class="parr">↗</span>
         </div>
         <p class="pcdesc">Explorations numériques des archives INA · 5 328 notices · R, IramuTeQ.</p>
         <div class="chips">
-          <span class="chip">R</span>
-          <span class="chip">INA</span>
-          <span class="chip">EUR ArTec</span>
+         <span class="chip chip-b">R</span>
+         <span class="chip chip-t">INA</span>
+         <span class="chip chip-t">EUR ArTec</span>
         </div>
       </a>
-         <!-- ✏️ Projet 7 -->
+         <!-- Projet 7 
       <a href="projet-bi-media.html" class="pcard reveal">
         <div class="pnum">// 06</div>
         <div class="pch">
@@ -818,19 +798,20 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
           <span class="chip">Dax</span>
           <span class="chip">Power Query</span>
         </div>
-      </a>
-       <!-- ✏️ Projet 9 -->
+      </a> -->
+       
+       <!-- Projet 9 -->
       <a href="projet-spotify-dashboard.html" class="pcard reveal">
-        <div class="pnum">// 06</div>
+        <div class="pnum">// 07</div>
         <div class="pch">
-          <h3 class="pctitle">Dashboard TOP Spotify &amp; 2026</h3>
+          <h3 class="pctitle">Dashboard Spotify 2026</h3>
           <span class="parr">↗</span>
         </div>
-        <p class="pcdesc"> Analyse de longévité, tendances, genres, etc.</p>
+        <p class="pcdesc"> Analyse des classements Spotify : longévité des titres, évolution des genres, artistes dominants. Power BI, DAX.</p>
         <div class="chips">
-          <span class="chip">PowerBi</span>
-          <span class="chip">Dax</span>
-          <span class="chip">Power Query</span>
+          <span class="chip chip-a">PowerBi</span>
+          <span class="chip chip-a">Dax</span>
+          <span class="chip chip-a">Power Query</span>
         </div>
       </a>
 
@@ -842,7 +823,6 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
 
 <!-- ============================================================
      COMPÉTENCES
-     ✏️ Ajoute/supprime des <span class="pill"> selon tes outils.
      ============================================================ -->
 <section id="competences">
   <div class="wrap">
@@ -853,12 +833,12 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
     </div>
     <div class="sk-layout">
       <div class="sk-intro reveal">
-        <!-- ✏️ Texte d'intro de la section compétences -->
+        <!-- Texte d'intro de la section compétences -->
         <p>De la collecte de données brutes au dashboard final : maîtrise de l'ensemble de la chaîne analytique, en quantitatif comme en qualitatif.</p>
       </div>
       <div class="sk-grid">
 
-        <!-- ✏️ Catégorie 1 — Python -->
+        <!-- Catégorie 1 : Python -->
         <div class="skc reveal">
           <div class="skh"><div class="skdot" style="background:var(--cyan)"></div><div class="skt">Python &amp; Analyse</div></div>
           <div class="skp">
@@ -868,7 +848,7 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
           </div>
         </div>
 
-        <!-- ✏️ Catégorie 2 — R -->
+        <!-- Catégorie 2 : R -->
         <div class="skc reveal">
           <div class="skh"><div class="skdot" style="background:var(--blue)"></div><div class="skt">R &amp; NLP</div></div>
           <div class="skp">
@@ -877,7 +857,7 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
           </div>
         </div>
 
-        <!-- ✏️ Catégorie 3 — BI -->
+        <!-- Catégorie 3 : BI -->
         <div class="skc reveal">
           <div class="skh"><div class="skdot" style="background:var(--teal)"></div><div class="skt">BI &amp; Visualisation</div></div>
           <div class="skp">
@@ -886,7 +866,7 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
           </div>
         </div>
 
-        <!-- ✏️ Catégorie 4 — Sources médias -->
+        <!-- Catégorie 4 : Sources médias -->
         <div class="skc reveal">
           <div class="skh"><div class="skdot" style="background:var(--amber)"></div><div class="skt">Sources médias</div></div>
           <div class="skp">
@@ -904,7 +884,6 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
 
 <!-- ============================================================
      PARCOURS
-     ✏️ Duplique un bloc .tli pour ajouter une expérience.
      ============================================================ -->
 <section id="parcours">
   <div class="wrap">
@@ -915,7 +894,7 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
     </div>
     <div>
 
-      <!-- ✏️ Expérience 1 — modifie dates, rôle, organisation, description -->
+      <!-- Expérience 1 : modifie dates, rôle, organisation, description -->
       <div class="tli reveal">
         <div class="tld">2022 - 2024</div>
         <div>
@@ -925,7 +904,7 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
         </div>
       </div>
 
-      <!-- ✏️ Expérience 2 -->
+      <!-- Expérience 2 -->
       <div class="tli reveal">
         <div class="tld">2022 – 2023</div>
         <div>
@@ -935,13 +914,13 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
         </div>
       </div>
 
-      <!-- ✏️ Duplique ce bloc pour ajouter un stage / alternance :
+      <!-- pour ajouter un stage / alternance :
       <div class="tli reveal">
         <div class="tld">DATES</div>
         <div>
           <div class="tlr">Titre du poste</div>
           <div class="tlo">Nom de l'entreprise</div>
-          <div class="tldesc">Description de tes missions.</div>
+          <div class="tldesc">Description des missions.</div>
         </div>
       </div>
       -->
@@ -953,7 +932,6 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
 
 <!-- ============================================================
      CONTACT
-     ✏️ Remplace les href par tes vraies URLs et adresses.
      ============================================================ -->
 <section id="contact">
   <div class="wrap">
@@ -964,34 +942,30 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
     </div>
     <div class="ct-layout">
 
-      <!-- ✏️ Citation / phrase de gauche -->
-      <div class="reveal">
-        <p class="ct-stmt">
-          Les données sans<br>
-          contexte ne sont<br>
-          <em>que du bruit.</em><br>
-          <span class="dim">Mon rôle est de<br>leur donner du sens.</span>
-        </p>
-      </div>
+      <!-- Citation / phrase de gauche -->
+      Les sciences humaines
+m'ont appris à poser
+<em>les bonnes questions.</em>
+<span class="dim">La data, à y répondre.</span>
 
       <div class="reveal">
-        <!-- ✏️ Texte au-dessus des liens -->
+        <!-- Texte au-dessus des liens -->
         <div class="ct-sub">// Disponible · médias · études · agence · Paris &amp; remote</div>
         <div class="ct-links">
 
-          <!-- ✏️ Email — remplace l'adresse -->
+          <!-- Email  -->
           <a href="mailto:amdjahedines@gmail.com" class="cl">
             <div class="cl-l"><span class="cl-ico">✉</span>amdjahedines@gmail.com</div>
             <span class="cl-arr">↗</span>
           </a>
 
-          <!-- ✏️ LinkedIn — remplace l'URL -->
+          <!-- LinkedIn  -->
           <a href="https://linkedin.com/in/ines-amdjahed" target="_blank" class="cl">
             <div class="cl-l"><span class="cl-ico">in</span>linkedin.com/in/ines-amdjahed</div>
             <span class="cl-arr">↗</span>
           </a>
 
-          <!-- ✏️ GitHub — remplace l'URL -->
+          <!-- GitHub  -->
           <a href="https://github.com/InesAjd92" target="_blank" class="cl">
             <div class="cl-l"><span class="cl-ico">gh</span>github.com/InesAjd92</div>
             <span class="cl-arr">↗</span>
@@ -1008,7 +982,7 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
      FOOTER
      ============================================================ -->
 <footer>
-  <!-- ✏️ Texte de gauche du footer -->
+  <!-- Texte de gauche du footer -->
   <div class="fl">© 2025 · Inès Amdjahed · Data Analyst</div>
   <div class="fr">
     <a href="https://github.com/InesAjd92" target="_blank">GitHub</a>
@@ -1019,7 +993,7 @@ footer { padding:20px 72px; border-top:1px solid var(--border); display:flex; ju
 
 
 <script>
-/* Scroll reveal — ne pas modifier */
+/* Scroll reveal : ne pas modifier */
 const obs = new IntersectionObserver(
   entries => entries.forEach(e => {
     if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target) }
